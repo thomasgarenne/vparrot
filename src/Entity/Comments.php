@@ -87,7 +87,7 @@ class Comments
         return $this;
     }
 
-    public function isIsValid(): ?bool
+    public function isValid(): ?bool
     {
         return $this->is_valid;
     }

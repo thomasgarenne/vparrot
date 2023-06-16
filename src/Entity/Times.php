@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\TimesRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TimesRepository::class)]
@@ -17,20 +16,20 @@ class Times
     #[ORM\Column(length: 20)]
     private ?string $day = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $am_open = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $am_close = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $pm_open = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $pm_close = null;
-
     #[ORM\ManyToOne(inversedBy: 'time')]
     private ?Workshops $workshops = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $open_am = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $close_am = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $open_pm = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $close_pm = null;
 
     public function getId(): ?int
     {
@@ -49,54 +48,6 @@ class Times
         return $this;
     }
 
-    public function getAmOpen(): ?\DateTimeInterface
-    {
-        return $this->am_open;
-    }
-
-    public function setAmOpen(?\DateTimeInterface $am_open): static
-    {
-        $this->am_open = $am_open;
-
-        return $this;
-    }
-
-    public function getAmClose(): ?\DateTimeInterface
-    {
-        return $this->am_close;
-    }
-
-    public function setAmClose(?\DateTimeInterface $am_close): static
-    {
-        $this->am_close = $am_close;
-
-        return $this;
-    }
-
-    public function getPmOpen(): ?\DateTimeInterface
-    {
-        return $this->pm_open;
-    }
-
-    public function setPmOpen(?\DateTimeInterface $pm_open): static
-    {
-        $this->pm_open = $pm_open;
-
-        return $this;
-    }
-
-    public function getPmClose(): ?\DateTimeInterface
-    {
-        return $this->pm_close;
-    }
-
-    public function setPmClose(?\DateTimeInterface $pm_close): static
-    {
-        $this->pm_close = $pm_close;
-
-        return $this;
-    }
-
     public function getWorkshops(): ?Workshops
     {
         return $this->workshops;
@@ -105,6 +56,54 @@ class Times
     public function setWorkshops(?Workshops $workshops): static
     {
         $this->workshops = $workshops;
+
+        return $this;
+    }
+
+    public function getOpenAm(): ?string
+    {
+        return $this->open_am;
+    }
+
+    public function setOpenAm(string $open_am): static
+    {
+        $this->open_am = $open_am;
+
+        return $this;
+    }
+
+    public function getCloseAm(): ?string
+    {
+        return $this->close_am;
+    }
+
+    public function setCloseAm(string $close_am): static
+    {
+        $this->close_am = $close_am;
+
+        return $this;
+    }
+
+    public function getOpenPm(): ?string
+    {
+        return $this->open_pm;
+    }
+
+    public function setOpenPm(string $open_pm): static
+    {
+        $this->open_pm = $open_pm;
+
+        return $this;
+    }
+
+    public function getClosePm(): ?string
+    {
+        return $this->close_pm;
+    }
+
+    public function setClosePm(string $close_pm): static
+    {
+        $this->close_pm = $close_pm;
 
         return $this;
     }

@@ -19,10 +19,6 @@ class Cars
     #[ORM\JoinColumn(nullable: false)]
     private ?Types $type = null;
 
-    #[ORM\ManyToOne(inversedBy: 'cars')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Brands $brand = null;
-
     #[ORM\Column]
     private ?int $year = null;
 
@@ -40,6 +36,10 @@ class Cars
 
     #[ORM\OneToMany(mappedBy: 'car', targetEntity: Pictures::class, orphanRemoval: true)]
     private Collection $pictures;
+
+    #[ORM\ManyToOne(inversedBy: 'cars')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?models $model = null;
 
     public function __construct()
     {
@@ -59,18 +59,6 @@ class Cars
     public function setType(?Types $type): static
     {
         $this->type = $type;
-
-        return $this;
-    }
-
-    public function getBrand(): ?Brands
-    {
-        return $this->brand;
-    }
-
-    public function setBrand(?Brands $brand): static
-    {
-        $this->brand = $brand;
 
         return $this;
     }
@@ -161,6 +149,18 @@ class Cars
                 $picture->setCar(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getModel(): ?models
+    {
+        return $this->model;
+    }
+
+    public function setModel(?models $model): static
+    {
+        $this->model = $model;
 
         return $this;
     }

@@ -1,0 +1,14 @@
+
+19/ 06 / 2023
+Entre Version20230616142221 et Version20230619092348
+
+DROP TABLE brands
+DROP TABLE models
+DROP TABLE pictures
+DROP TABLE cars
+DROP TABLE types
+DROP TABLE comments
+DROP TABLE services
+DROP TABLE times
+DROP TABLE users
+DROP TABLE workshop

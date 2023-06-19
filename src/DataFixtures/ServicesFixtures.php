@@ -19,7 +19,7 @@ class ServicesFixtures extends Fixture
             $service = new Services();
             $service->setName($name);
             $service->setDescription($faker->text(20));
-            $service->setPicture('public/assets/image/car1');
+            $service->setPicture('public/assets/uploads/service2.jpg');
 
             $manager->persist($service);
         }

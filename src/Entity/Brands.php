@@ -18,20 +18,12 @@ class Brands
     #[ORM\Column(length: 150)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'brands')]
-    #[ORM\JoinColumn(onDelete: 'CASCADE')]
-    private ?self $parent = null;
-
-    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
-    private Collection $brands;
-
-    #[ORM\OneToMany(mappedBy: 'brand', targetEntity: Cars::class)]
-    private Collection $cars;
+    #[ORM\OneToMany(mappedBy: 'brand', targetEntity: Models::class, orphanRemoval: true)]
+    private Collection $models;
 
     public function __construct()
     {
-        $this->brands = new ArrayCollection();
-        $this->cars = new ArrayCollection();
+        $this->models = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,72 +43,30 @@ class Brands
         return $this;
     }
 
-    public function getParent(): ?self
-    {
-        return $this->parent;
-    }
-
-    public function setParent(?self $parent): static
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, self>
+     * @return Collection<int, Models>
      */
-    public function getBrands(): Collection
+    public function getModels(): Collection
     {
-        return $this->brands;
+        return $this->models;
     }
 
-    public function addBrand(self $brand): static
+    public function addModel(Models $model): static
     {
-        if (!$this->brands->contains($brand)) {
-            $this->brands->add($brand);
-            $brand->setParent($this);
+        if (!$this->models->contains($model)) {
+            $this->models->add($model);
+            $model->setBrand($this);
         }
 
         return $this;
     }
 
-    public function removeBrand(self $brand): static
+    public function removeModel(Models $model): static
     {
-        if ($this->brands->removeElement($brand)) {
+        if ($this->models->removeElement($model)) {
             // set the owning side to null (unless already changed)
-            if ($brand->getParent() === $this) {
-                $brand->setParent(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Cars>
-     */
-    public function getCars(): Collection
-    {
-        return $this->cars;
-    }
-
-    public function addCar(Cars $car): static
-    {
-        if (!$this->cars->contains($car)) {
-            $this->cars->add($car);
-            $car->setBrand($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCar(Cars $car): static
-    {
-        if ($this->cars->removeElement($car)) {
-            // set the owning side to null (unless already changed)
-            if ($car->getBrand() === $this) {
-                $car->setBrand(null);
+            if ($model->getBrand() === $this) {
+                $model->setBrand(null);
             }
         }
 

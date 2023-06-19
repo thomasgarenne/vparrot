@@ -17,7 +17,8 @@ class CarsFixtures extends Fixture implements DependentFixtureInterface
 
         $faker = Factory::create('fr_FR');
 
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 1; $i < 10; $i++) {
+
             $car = new Cars();
             $car->setColor($faker->colorName());
             $car->setYear($faker->numberBetween(2000, 2023));
@@ -28,42 +29,12 @@ class CarsFixtures extends Fixture implements DependentFixtureInterface
             $type = $this->getReference('type-1');
             $car->setType($type);
 
-            $brand = $this->getReference('brand-' . rand(2, 4));
-            $car->setBrand($brand);
+            $model = $this->getReference('mod-' . $i);
+            $car->setModel($model);
 
             $manager->persist($car);
-        }
-        for ($i = 0; $i < 3; $i++) {
-            $car = new Cars();
-            $car->setColor($faker->colorName());
-            $car->setYear($faker->numberBetween(2000, 2023));
-            $car->setKm($faker->numberBetween(40000, 200000));
-            $car->setMotor($faker->randomElement($motor));
-            $car->setPower($faker->randomElement($power));
 
-            $type = $this->getReference('type-1');
-            $car->setType($type);
-
-            $brand = $this->getReference('brand-' . rand(6, 8));
-            $car->setBrand($brand);
-
-            $manager->persist($car);
-        }
-        for ($i = 0; $i < 3; $i++) {
-            $car = new Cars();
-            $car->setColor($faker->colorName());
-            $car->setYear($faker->numberBetween(2000, 2023));
-            $car->setKm($faker->numberBetween(40000, 200000));
-            $car->setMotor($faker->randomElement($motor));
-            $car->setPower($faker->randomElement($power));
-
-            $type = $this->getReference('type-1');
-            $car->setType($type);
-
-            $brand = $this->getReference('brand-' . rand(10, 12));
-            $car->setBrand($brand);
-
-            $manager->persist($car);
+            $this->setReference('car-' . $i, $car);
         }
 
         $manager->flush();

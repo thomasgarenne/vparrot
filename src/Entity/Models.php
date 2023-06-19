@@ -20,7 +20,7 @@ class Models
 
     #[ORM\ManyToOne(inversedBy: 'models')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?brands $brand = null;
+    private ?Brands $brand = null;
 
     #[ORM\OneToMany(mappedBy: 'model', targetEntity: Cars::class)]
     private Collection $cars;

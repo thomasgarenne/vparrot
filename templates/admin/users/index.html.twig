@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Administration des utilisateurs{% endblock %}
+
+{% block body %}
+    <section class="row m-3">
+       {% include "_partials/_adminNavbar.html.twig"%}
+        <div class="col-9">
+        <h2>Liste des utilisateurs</h2>
+        <a href="#"><button class="btn btn-primary">Ajouter</button></a>
+            <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>email</th>
+                <th>Téléphone</th>
+                <th>Actions</th>
+            </thead>
+            {% for user in users %}
+                <tr>
+                    <th scope="row">{{ user.id }}</thead>
+                    <td>{{user.lastname}}</td>
+                    <td>{{user.firstname}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phone}}</td>
+                    <td class="d-flex">
+                        <button class="btn btn-warning mx-2">Modifier</button>
+                        <a href="#"><button class="btn btn-danger">Supprimer</button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </section>
+{% endblock %}

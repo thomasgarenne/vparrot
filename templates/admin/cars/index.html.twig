@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Voiture{% endblock %}
+
+{% block body %}
+    <section class="row">
+        {% include "_partials/_adminNavbar.html.twig" %}
+        <div class="col-9">
+        <h2>Liste des voitures</h2>
+        <a href="#"><button class="btn btn-primary">Ajouter</button></a>
+        
+            <table class="table">
+                <thead>
+                    <th>#</th>
+                    <th>Type</th>
+                    <th>Marque</th>
+                    <th>Modèle</th>
+                    <th>Year</th>
+                    <th>Km</th>
+                    <th>Moteur</th>
+                    <th>Puissance</th>
+                    <th>Couleur</th>
+                </thead>
+                {% for car in cars %}
+                    <tr>
+                        <th scope="row">{{ car.id }}</th>
+                        <td>{{ car.type.id }}</td>
+                        <td>{{car.getModel.getBrand.name}}</td>
+                        <td>{{ car.getModel.name }}</td>
+                        <td>{{ car.year }}</td>
+                        <td>{{ car.km }}</td>
+                        <td>{{ car.motor }}</td>
+                        <td>{{ car.power }}</td>
+                        <td>{{ car.color }}</td>
+                        
+                        <td class="d-flex">
+                            <a href="#"><button class="btn btn-warning mx-2">Modifier</button></a>
+                            <a href="#"><button class="btn btn-danger">Supprimer</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+{% endblock %}

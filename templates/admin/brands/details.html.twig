@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Brands Model{% endblock %}
+
+{% block body %}
+    <section class="row">
+        {% include "_partials/_adminNavbar.html.twig" %}
+        <div class="col-9">
+            <button class="btn btn-primary">Ajouter</button>
+            <table class="table">
+                <thead>
+                    <th>#</th>
+                    <th>Modèles</th>
+                    <th>Actions</th>
+                </thead>
+                {% for model in models %}
+                    <tr>
+                        <th scope="row">{{ model.id }}</thead>
+                        <td>
+                            {{ model.name }}
+                        </td>
+                        <td class="d-flex">
+                            <a href="#"><button class="btn btn-warning mx-2">Modifier</button></a>
+                            <a href="#"><button class="btn btn-danger mx-2">Supprimer</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+{% endblock %}

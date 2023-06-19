@@ -39,7 +39,7 @@ class Cars
 
     #[ORM\ManyToOne(inversedBy: 'cars')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?models $model = null;
+    private ?Models $model = null;
 
     public function __construct()
     {

@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Services{% endblock %}
+
+{% block body %}
+    <section class="row">
+        {% include "_partials/_adminNavbar.html.twig" %}
+        <div class="col-9">
+        <h2>Liste des Services</h2>
+        <a href="#"><button class="btn btn-primary">Ajouter</button></a>
+            <table class="table">
+                <thead>
+                    <th>#</th>
+                    <th>Prénoms</th>
+                    <th>Descriptions</th>
+                    <th>Images</th>
+                </thead>
+                {% for service in services %}
+                    <tr>
+                        <th scope="row">{{ service.id }}</thead>
+                        <td>{{service.name}}</td>
+                        <td>{{service.description}}</td>
+                        <td>
+                            <img class="w-50 h-50" src={{ asset(service.picture) }} alt="{{ service.name }}">
+                        </td>                 
+                        <td class="d-flex">
+                            <a href="#"><button class="btn btn-warning mx-2">Modifier</button></a>
+                            <a href="#"><button class="btn btn-danger">Supprimer</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+{% endblock %}

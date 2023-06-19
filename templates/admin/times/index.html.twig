@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}times{% endblock %}
+
+{% block body %}
+    <section class="row">
+        {% include "_partials/_adminNavbar.html.twig" %}
+        <div class="col-9">
+        <h2>Liste des Horaires</h2>
+        <a href="#"><button class="btn btn-primary">Ajouter</button></a>
+            <table class="table">
+                <thead>
+                    <th>#</th>
+                    <th>Jours</th>
+                    <th>Ouverture matin</th>
+                    <th>Fermeture matin</th>
+                    <th>Ouverture après-midi</th>
+                    <th>Fermeture après-midi</th>
+                </thead>
+                {% for time in times %}
+                    <tr>
+                        <th scope="row">{{ time.id }}</thead>
+                        <td>{{time.day}}</td>
+                        <td>{{time.openAm}}</td>            
+                        <td>{{time.closeAm}}</td>            
+                        <td>{{time.openPm}}</td>            
+                        <td>{{time.closePm}}</td>            
+                        <td class="d-flex">
+                            <a href="#"><button class="btn btn-warning mx-2">Modifier</button></a>
+                            <a href="#"><button class="btn btn-danger">Supprimer</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+{% endblock %}

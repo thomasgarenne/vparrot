@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Categories Index{% endblock %}
+
+{% block body %}
+    <section class="row">
+        {% include "_partials/_adminNavbar.html.twig" %}
+        <div class="col-9">
+        <h2>Liste des Marques</h2>
+        <a href="#"><button class="btn btn-primary">Ajouter</button></a>
+            <table class="table">
+                <thead>
+                    <th>#</th>
+                    <th>Marques</th>
+                    <th>Actions</th>
+                </thead>
+                {% for brand in brands %}
+                    <tr>
+                        <th scope="row">{{ brand.id }}</thead>
+                        <td>
+                            <a href="{{ path('admin_brands_details', { 'name': brand.name }) }}" class="nav-link">
+                                <button class="btn btn-primary">{{ brand.name }}</button>
+                            </a>
+                        </td>
+                        <td class="d-flex">
+                            <a href="#"><button class="btn btn-warning mx-2">Modifier</button></a>
+                            <a href="#"><button class="btn btn-danger">Supprimer</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+{% endblock %}

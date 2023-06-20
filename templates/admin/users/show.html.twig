@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Delete User{% endblock %}
+
+{% block body %}
+    <div class="col-9 m-auto mx-auto my-3">
+        <h2>Détails de {{ user.lastname }} {{ user.firstname }}</h2>
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>email</th>
+                <th>Téléphone</th>
+                <th>Actions</th>
+            </thead>
+            
+            <tr>
+                <th scope="row">{{ user.id }}</thead>
+                <td>{{user.lastname}}</td>
+                <td>{{user.firstname}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone}}</td>
+                <td class="d-flex">
+                    {{ include('admin/users/_delete.html.twig') }}
+                    <a href="{{ path('admin_users_edit', {'id': user.id}) }}">
+                        <button class="btn btn-warning mx-1">Modifier</button>
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+        <a href="{{ path('admin_users_index') }}">
+            <button class="btn btn-info">Retour à la liste</button>
+        </a>
+    </div>
+{% endblock %}

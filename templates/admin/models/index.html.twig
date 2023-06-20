@@ -7,26 +7,41 @@
         {% include "_partials/_adminNavbar.html.twig" %}
         <div class="col-9">
         <h2>Liste des modèles</h2>
-        <a href="#"><button class="btn btn-primary">Ajouter</button></a>
-            <table class="table">
-                <thead>
-                    <th>#</th>
-                    <th>Modèles</th>
-                    <th>Marques</th>
-                    <th>Actions</th>
-                </thead>
-                {% for model in models %}
-                    <tr>
-                        <th scope="row">{{ model.id }}</th>
-                        <td>{{ model.name }}</td>
-                        <td>{{ model.getBrand.name }}</td>
-                        <td class="d-flex">
-                            <a href="#"><button class="btn btn-warning mx-2">Modifier</button></a>
-                            <a href="#"><button class="btn btn-danger">Supprimer</button></a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
+        <a href="{{ path('admin_models_new') }}">
+            <button class="btn btn-primary">Ajouter</button>
+        </a>
+           
+            {% for brand in brands %}
+                <h2>{{brand.name}}</h2>
+
+                <table class="table">
+                    <thead>
+                        <th>#</th>
+                        <th>Modèles</th>
+                        <th>Actions</th>
+                    </thead>
+
+                    {% for model in models %}                            
+                        {% if brand.id == model.getBrand.id %}
+                        <tr>
+                            <th>{{ model.id }}</th>
+                            <td>{{ model.name }}</td>
+                            <td class="d-flex">
+                               <a href="{{ path('admin_models_show', {id: model.id}) }}">
+                                    <button class="btn btn-info mx-2">Voir</button>
+                                </a>
+
+                                <a href="{{ path('admin_models_edit', {id: model.id}) }}">
+                                    <button class="btn btn-warning">Modifier</button>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}                    
+
+                </table>
+            {% endfor %}
+            
         </div>
     </section>
 {% endblock %}

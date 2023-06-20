@@ -7,7 +7,7 @@
        {% include "_partials/_adminNavbar.html.twig"%}
         <div class="col-9">
         <h2>Liste des utilisateurs</h2>
-        <a href="#"><button class="btn btn-primary">Ajouter</button></a>
+        <a href="{{ path('app_register') }}"><button class="btn btn-primary">Ajouter</button></a>
             <table class="table">
             <thead>
                 <th>#</th>
@@ -25,8 +25,12 @@
                     <td>{{user.email}}</td>
                     <td>{{user.phone}}</td>
                     <td class="d-flex">
-                        <button class="btn btn-warning mx-2">Modifier</button>
-                        <a href="#"><button class="btn btn-danger">Supprimer</button></a>
+                        <a href="{{ path('admin_users_show', {'id': user.id}) }}">
+                             <button class="btn btn-info mx-2">Voir</button>
+                        </a>
+                        <a href="{{ path('admin_users_edit', {'id': user.id}) }}">
+                             <button class="btn btn-warning">Modifier</button>
+                        </a>
                     </td>
                 </tr>
             {% endfor %}

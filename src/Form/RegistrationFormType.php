@@ -43,16 +43,6 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Téléphone'
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-                'label' => "En vous inscrivant, vous acceptez nos Conditions, 
-                            notre Politique de confidentialité et notre Utilisation des cookies."
-            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -73,6 +63,16 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
                 'label' => 'Mot de passe'
+            ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'You should agree to our terms.',
+                    ]),
+                ],
+                'label' => "En vous inscrivant, vous acceptez nos Conditions, 
+                            notre Politique de confidentialité et notre Utilisation des cookies."
             ]);
     }
 

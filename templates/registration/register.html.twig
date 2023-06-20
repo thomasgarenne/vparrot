@@ -1,36 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Registration{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-    {% for flash_success in app.flashes('success') %}
-        <div class="alert alert-success" role="alert">{{ flash_success }}</div>
-    {% endfor %}
 
-    <h1>Register</h1>
-<div class="m-auto w-75">
-    {{ form_errors(registrationForm) }}
+    <div class="col-9 mx-auto my-3">
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+        {% for flash_success in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">{{ flash_success }}</div>
+        {% endfor %}
 
-    {{ form_start(registrationForm) }}
-    <fieldset class="mb-3">
-        <legend>Mon identité</legend>
-        {{ form_row(registrationForm.firstname) }}
-        {{ form_row(registrationForm.lastname) }}
-    </fieldset>
-    <fieldset class="mb-3">
-        <legend>Mes coordonnées</legend>
-        {{ form_row(registrationForm.phone) }}
-        {{ form_row(registrationForm.email) }}
-    </fieldset>
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <h2>Enregister un nouvel utilisateur</h2>
+        <div class="m-auto w-75">
+            {{ form_errors(registrationForm) }}
 
-        <button type="submit" class="btn btn-primary my-2">Register</button>
-    {{ form_end(registrationForm) }}
-</div>
+            {{ form_start(registrationForm) }}
+            <fieldset class="mb-3">
+                <legend>Mon identité</legend>
+                {{ form_row(registrationForm.firstname) }}
+                {{ form_row(registrationForm.lastname) }}
+            </fieldset>
+            <fieldset class="mb-3">
+                <legend>Mes coordonnées</legend>
+                {{ form_row(registrationForm.phone) }}
+                {{ form_row(registrationForm.email) }}
+            </fieldset>
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Password'
+                }) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+
+                <button type="submit" class="btn btn-primary my-2">Valider</button>
+            {{ form_end(registrationForm) }}
+        </div>
+        <a href="{{ path('admin_users_index') }}"><button class="btn btn-info">Retour à la liste</button></a>
+    </div>
+    
 {% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Brands{% endblock %}
+
+{% block body %}
+    <div class="col-9 m-auto">
+        <h2>Modifier marque {{ brand.name }}</h2>
+        
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Marque</th>
+                <th>Actions</th>
+            </thead>
+            <tr>
+                <td>{{ brand.id }}</td>
+                <td>{{ brand.name }}</td>
+                <td class="d-flex">
+                    <a href="{{ path('admin_brands_edit', {'id': brand.id}) }}">
+                        <button class="btn btn-warning">Modifier</button>
+                    </a>
+                    {{ include('admin/brands/_delete.html.twig') }}
+                </td>
+            </tr>
+        </table>
+
+        <a href="{{ path('admin_brands_index') }}">
+            <button class="btn btn-info">Retour à la liste</button>
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <div class="col-9 my-3 mx-auto">
+        <h2>Modifier {{ user.lastname }} {{ user.firstname }}</h2>
+        <div class="w-75 m-auto">
+            {{ include('admin/users/_form.html.twig') }}
+        </div>
+        <a href="{{ path('admin_users_index') }}"><button class="btn btn-info my-1">Retour à la liste</button></a>
+    </div>
+{% endblock %}

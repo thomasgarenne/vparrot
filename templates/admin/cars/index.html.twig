@@ -7,7 +7,7 @@
         {% include "_partials/_adminNavbar.html.twig" %}
         <div class="col-9">
         <h2>Liste des voitures</h2>
-        <a href="#"><button class="btn btn-primary">Ajouter</button></a>
+        <a href="{{ path('admin_cars_new') }}"><button class="btn btn-primary">Ajouter</button></a>
         
             <table class="table">
                 <thead>
@@ -27,15 +27,15 @@
                         <td>{{ car.type.id }}</td>
                         <td>{{car.getModel.getBrand.name}}</td>
                         <td>{{ car.getModel.name }}</td>
-                        <td>{{ car.year }}</td>
+                        <td>{{ car.year.format('Y-m-d') }}</td>
                         <td>{{ car.km }}</td>
                         <td>{{ car.motor }}</td>
                         <td>{{ car.power }}</td>
                         <td>{{ car.color }}</td>
                         
                         <td class="d-flex">
-                            <a href="#"><button class="btn btn-warning mx-2">Modifier</button></a>
-                            <a href="#"><button class="btn btn-danger">Supprimer</button></a>
+                            <a href="{{ path('admin_cars_show', {'id': car.id}) }}"><button class="btn btn-info mx-2">Détails</button></a>
+                            <a href="{{ path('admin_cars_edit', {'id': car.id}) }}"><button class="btn btn-warning">Modifier</button></a>
                         </td>
                     </tr>
                 {% endfor %}

@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}New Car{% endblock %}
+
+{% block body %}
+    <div class="col-9 m-auto">
+        <div class="w-75 m-auto">
+        {% include "admin/cars/_form.html.twig" %}
+        </div>
+        <a href="{{ path('admin_cars_index') }}">
+            <button class="btn btn-info">Retour à la liste</button>
+        </a>
+    </div>
+{% endblock %}

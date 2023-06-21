@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Details Comment{% endblock %}
+
+{% block body %}
+    <div class="col-9 m-auto">
+        <h2>Détails Commentaire {{ comment.id }}</h2>
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Prénoms</th>
+                <th>Noms</th>
+                <th>Messages</th>
+                <th>Dates</th>
+                <th>Validé</th>
+            </thead>
+            <tr>
+                <th scope="row">{{ comment.id }}</thead>
+                <td>{{comment.firstname}}</td>
+                <td>{{comment.lastname}}</td>
+                <td>{{comment.content}}</td>
+                <td>{{comment.createdAt}}</td>
+                <td>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="switch{{ comment.id }}" {{ comment.isValid ? "checked" : "" }} disabled>
+                    </div>
+                </td>
+                <td class="d-flex">
+                    <a href="{{ path('admin_comments_edit', {'id': comment.id}) }}">
+                        <button class="btn btn-warning">Modifier</button>
+                    </a>
+                    {% include "admin/comments/_delete.html.twig" %}
+                </td>
+            </tr>
+        </table>
+        <a href="{{ path('admin_comments_index') }}">
+            <button class="btn btn-info">Retour à la liste</button>
+        </a>
+    </div>
+{% endblock %}

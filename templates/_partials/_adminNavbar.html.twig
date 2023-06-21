@@ -1,20 +1,11 @@
 <aside class="col-3">
-    <article class="card mb-2">
-        <div class="card-header">
-            Utilisateurs
-        </div>
-        <div class="card-body">
-            <p><a href="{{path('admin_users_index')}}">Liste des utilisateurs</a></p>
-            <p><a href="">Ajouter un utilisateur</a></p>
-        </div>
-    </article>
         <article class="card mb-2">
         <div class="card-header">
             Voitures
         </div>
         <div class="card-body">
             <p><a href="{{path('admin_cars_index')}}">Liste des Voitures</a></p>
-            <p><a href="">Ajouter une voiture</a></p>
+            <p><a href="{{path('admin_cars_new')}}">Ajouter une voiture</a></p>
         </div>
     </article>
         <article class="card mb-2">
@@ -41,10 +32,19 @@
         </div>
         <div class="card-body">
             <p><a href="{{path('admin_comments_index')}}">Liste des commentaire</a></p>
-            <p><a href="">Valider un commentaire</a></p>
         </div>
     </article>
-        <article class="card mb-2">
+    {% if is_granted('ROLE_ADMIN') %}
+    <article class="card mb-2">
+        <div class="card-header">
+            Utilisateurs
+        </div>
+        <div class="card-body">
+            <p><a href="{{path('admin_users_index')}}">Liste des utilisateurs</a></p>
+            <p><a href="{{path('app_register')}}">Ajouter un utilisateur</a></p>
+        </div>
+    </article>
+    <article class="card mb-2">
         <div class="card-header">
             Services
         </div>
@@ -53,7 +53,7 @@
             <p><a href="">Modifier un service</a></p>
         </div>
     </article>
-        <article class="card mb-2">
+    <article class="card mb-2">
         <div class="card-header">
             Horaires
         </div>
@@ -61,4 +61,5 @@
             <p><a href="{{path('admin_times_index')}}">Liste horaire</a></p>
         </div>
     </article>
+    {% endif %}
 </aside>

@@ -3,9 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Users;
-use App\Form\RegistrationFormType;
+use App\Form\UsersTypes;
 use App\Repository\UsersRepository;
-use PhpParser\Builder\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +27,7 @@ class UsersController extends AbstractController
     #[Route('{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Users $user, UsersRepository $usersRepository): Response
     {
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(UsersTypes::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

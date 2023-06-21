@@ -15,6 +15,8 @@
                 <th>Prénom</th>
                 <th>email</th>
                 <th>Téléphone</th>
+                <th>Rôles</th>
+                <th>Vérifié</th>
                 <th>Actions</th>
             </thead>
             {% for user in users %}
@@ -24,6 +26,26 @@
                     <td>{{user.firstname}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.phone}}</td>
+                    <td>
+                    {% for role in user.roles %}
+                        {% if role == "ROLE_ADMIN" %}
+                            {% set name = "Administrateur" %}
+                            {% set color = "danger" %}
+                        {% elseif role == "ROLE_PRODUCT_ADMIN" %}
+                            {% set name = "Admin Product" %}
+                            {% set color = "warning" %}
+                        {% else %}
+                            {% set name = "Employé" %}
+                            {% set color = "success" %}
+                        {% endif %}
+                        <span class="badge bg-{{color}}">{{ name }}</span>
+                    {% endfor %}
+                    </td>
+                    <td>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="switch{{ user.id }}" {{ user.isVerified ? "checked" : "" }} disabled>
+                        </div>
+                    </td>
                     <td class="d-flex">
                         <a href="{{ path('admin_users_show', {'id': user.id}) }}">
                              <button class="btn btn-info mx-2">Voir</button>

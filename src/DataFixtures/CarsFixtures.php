@@ -21,7 +21,7 @@ class CarsFixtures extends Fixture implements DependentFixtureInterface
 
             $car = new Cars();
             $car->setColor($faker->colorName());
-            $car->setYear($faker->numberBetween(2000, 2023));
+            $car->setYear($faker->dateTime());
             $car->setKm($faker->numberBetween(40000, 200000));
             $car->setMotor($faker->randomElement($motor));
             $car->setPower($faker->randomElement($power));

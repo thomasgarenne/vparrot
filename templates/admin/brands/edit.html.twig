@@ -7,8 +7,7 @@
     <h2>Modifier marque {{ brand.name }}</h2>
 
     <div class="w-75 m-auto">
-        {{ include('admin/brands/_form.html.twig') }}
-       
+        {{ include('admin/brands/_form.html.twig', {'btn': 'btn-warning', 'button_label': 'Modifier'}) }}    
     </div>
     
     <a href="{{ path('admin_brands_index') }}"><button class="btn btn-info">Retour à la liste</button></a>

@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+    
+{% block title %}Car Details{% endblock %}
+
+{% block body %}
+<div class="col-9 m-auto">
+    <h2>Détails voitures {{ car.getModel.getBrand.name }} {{ car.getModel.name }}</h2>
+    <a href="{{ path('admin_cars_new') }}"><button class="btn btn-primary">Ajouter</button></a>
+        
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Type</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Year</th>
+                <th>Km</th>
+                <th>Moteur</th>
+                <th>Puissance</th>
+                <th>Couleur</th>
+            </thead>
+            <tr>
+                <th scope="row">{{ car.id }}</th>
+                <td>{{ car.type.id }}</td>
+                <td>{{ car.getModel.getBrand.name}}</td>
+                <td>{{ car.getModel.name }}</td>
+                <td>{{ car.year.format('Y-m-d') }}</td>        
+                <td>{{ car.km }}</td>
+                <td>{{ car.motor }}</td>
+                <td>{{ car.power }}</td>
+                <td>{{ car.color }}</td>           
+                <td class="d-flex">
+                    <a href="{{ path('admin_cars_edit', {'id': car.id}) }}">
+                        <button class="btn btn-warning m-1">Modifier</button>
+                    </a>
+                    {% include "admin/cars/_delete.html.twig" %}
+                </td>
+            </tr>
+        </table>
+
+        <a href="{{ path('admin_cars_index') }}">
+            <button class="btn btn-info m-1">Retour à la liste</button>
+        </a>
+    </div>
+{% endblock %}

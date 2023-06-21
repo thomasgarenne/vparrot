@@ -2,8 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Services;
+use App\Form\ServicesType;
 use App\Repository\ServicesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,6 +18,31 @@ class ServicesController extends AbstractController
     {
         return $this->render('admin/services/index.html.twig', [
             'services' => $servicesRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
+    public function show(Services $service): Response
+    {
+        return $this->render('admin/services/show.html.twig', [
+            'service' => $service
+        ]);
+    }
+
+    #[Route('{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
+    public function edit(Services $service, ServicesRepository $servicesRepository, Request $request): Response
+    {
+        $form = $this->createForm(ServicesType::class, $service);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $servicesRepository->save($service, true);
+            return $this->redirectToRoute('admin_services_index');
+        }
+
+        return $this->render('admin/services/edit.html.twig', [
+            'service' => $service,
+            'form' => $form,
         ]);
     }
 }

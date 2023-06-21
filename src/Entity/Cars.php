@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CarsRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,7 +21,7 @@ class Cars
     private ?Types $type = null;
 
     #[ORM\Column]
-    private ?int $year = null;
+    private ?DateTime $year = null;
 
     #[ORM\Column]
     private ?int $km = null;
@@ -63,12 +64,12 @@ class Cars
         return $this;
     }
 
-    public function getYear(): ?int
+    public function getYear(): mixed
     {
         return $this->year;
     }
 
-    public function setYear(int $year): static
+    public function setYear(DateTime $year): static
     {
         $this->year = $year;
 

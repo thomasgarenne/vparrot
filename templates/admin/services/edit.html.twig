@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Service{% endblock %}
+
+{% block body %}
+    <div class="col-9 m-auto"
+        <h2>Modifier {{ service.name }}</h2>
+        <div class="w-75 m-auto">
+            {{ include('admin/services/_form.html.twig') }}
+        </div>
+        <a href="{{ path('admin_services_index') }}"><button class="btn btn-info my-1">Retour à la liste</button></a>
+    </div>
+{% endblock %}

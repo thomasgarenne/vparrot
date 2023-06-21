@@ -7,7 +7,9 @@
         <h2>Modifier modèle {{ model.name }}</h2>
 
         <div class="w-75 m-auto">
-            {% include "admin/models/_form.html.twig" %}
+            <div>
+                {{ include('admin/models/_form.html.twig', {'btn': 'btn-warning', 'button_label': 'Modifier'}) }}
+            </div>
 
             <a href="{{ path('admin_models_index') }}">
                 <button class="btn btn-info m-1">Retour à la liste</button>

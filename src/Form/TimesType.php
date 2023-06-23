@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Times;
+use App\Entity\Workshops;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,8 +19,16 @@ class TimesType extends AbstractType
             ->add('close_am')
             ->add('open_pm')
             ->add('close_pm')
-            ->add('workshops')
-        ;
+            ->add(
+                'workshops',
+                EntityType::class,
+                [
+                    'class' => Workshops::class,
+                    'choice_label' => 'name',
+                    'label' => 'Magasin',
+                    'attr' => ['class' => 'form-control'],
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

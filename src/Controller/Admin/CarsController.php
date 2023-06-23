@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Cars;
-use App\Form\CarsTypes;
+use App\Form\CarsType;
 use App\Repository\CarsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +26,7 @@ class CarsController extends AbstractController
     {
         $car = new Cars();
 
-        $form = $this->createForm(CarsTypes::class, $car);
+        $form = $this->createForm(CarsType::class, $car);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -52,7 +52,7 @@ class CarsController extends AbstractController
     #[Route('{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Cars $car, Request $request, CarsRepository $carsRepository): Response
     {
-        $form = $this->createForm(CarsTypes::class, $car);
+        $form = $this->createForm(CarsType::class, $car);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

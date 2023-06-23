@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Models;
-use App\Form\ModelsTypes;
+use App\Form\ModelsType;
 use App\Repository\BrandsRepository;
 use App\Repository\ModelsRepository;
 use PhpParser\Node\Expr\AssignOp\Concat;
@@ -29,7 +29,7 @@ class ModelsController extends AbstractController
     {
         $model = new Models();
 
-        $form = $this->createForm(ModelsTypes::class, $model);
+        $form = $this->createForm(ModelsType::class, $model);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -54,7 +54,7 @@ class ModelsController extends AbstractController
     #[Route('{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Models $model, ModelsRepository $modelsRepository, Request $request): Response
     {
-        $form = $this->createForm(ModelsTypes::class, $model);
+        $form = $this->createForm(ModelsType::class, $model);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class CarsTypes extends AbstractType
+class CarsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

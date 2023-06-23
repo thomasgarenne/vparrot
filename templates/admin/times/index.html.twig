@@ -7,7 +7,6 @@
         {% include "_partials/_adminNavbar.html.twig" %}
         <div class="col-9">
         <h2>Liste des Horaires</h2>
-        <a href="#"><button class="btn btn-primary">Ajouter</button></a>
             <table class="table">
                 <thead>
                     <th>#</th>
@@ -26,8 +25,8 @@
                         <td>{{time.openPm}}</td>            
                         <td>{{time.closePm}}</td>            
                         <td class="d-flex">
-                            <a href="#"><button class="btn btn-warning mx-2">Modifier</button></a>
-                            <a href="#"><button class="btn btn-danger">Supprimer</button></a>
+                            <a href="{{ path('admin_times_show', {'id': time.id}) }}"><button class="btn btn-info">Détails</button></a>
+                            <a href="{{ path('admin_times_edit', {'id': time.id}) }}"><button class="btn btn-warning">Modifier</button></a>
                         </td>
                     </tr>
                 {% endfor %}

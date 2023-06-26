@@ -9,7 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted("ROLE_ADMIN_PRODUCT")]
 #[Route('/admin/comments', name: 'admin_comments_')]
 class CommentsController extends AbstractController
 {
@@ -38,6 +40,8 @@ class CommentsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $commentsRepository->save($comment, true);
 
+            $this->addFlash('success', 'Commentaire validé avec succés');
+
             return $this->redirectToRoute('admin_comments_index');
         }
 
@@ -53,6 +57,8 @@ class CommentsController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $comment->getId(), $request->request->get('_token'))) {
             $commentsRepository->remove($comment, true);
         }
+
+        $this->addFlash('success', 'Commentaire supprimé avec succés');
 
         return $this->redirectToRoute('admin_comments_index', [], Response::HTTP_SEE_OTHER);
     }

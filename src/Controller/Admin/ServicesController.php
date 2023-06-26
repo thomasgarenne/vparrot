@@ -9,7 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted("ROLE_ADMIN")]
 #[Route('/admin/services', name: 'admin_services_')]
 class ServicesController extends AbstractController
 {
@@ -29,6 +31,8 @@ class ServicesController extends AbstractController
         ]);
     }
 
+
+
     #[Route('{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Services $service, ServicesRepository $servicesRepository, Request $request): Response
     {
@@ -37,6 +41,9 @@ class ServicesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $servicesRepository->save($service, true);
+
+            $this->addFlash('success', 'Service modifié avec succés');
+
             return $this->redirectToRoute('admin_services_index');
         }
 

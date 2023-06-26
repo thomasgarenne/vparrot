@@ -9,7 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted("ROLE_ADMIN_PRODUCT")]
 #[Route('/admin/brands', name: 'admin_brands_')]
 class BrandsController extends AbstractController
 {
@@ -32,7 +34,11 @@ class BrandsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $brandsRepository->save($brand, true);
 
+            $this->addFlash('success', 'Nouvelle marque ajoutée');
+
             return $this->redirectToRoute('admin_brands_index', [], Response::HTTP_SEE_OTHER);
+        } else {
+            $this->addFlash('error', 'Une erreur est survenue');
         }
 
         return $this->render('admin/brands/new.html.twig', [
@@ -58,6 +64,8 @@ class BrandsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $brandsRepository->save($brand, true);
 
+            $this->addFlash('success', 'Marque modifiée');
+
             return $this->redirectToRoute('admin_brands_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -73,6 +81,8 @@ class BrandsController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $brand->getId(), $request->request->get('_token'))) {
             $brandsRepository->remove($brand, true);
         }
+
+        $this->addFlash('success', 'Marque suprimée');
 
         return $this->redirectToRoute('admin_brands_index', [], Response::HTTP_SEE_OTHER);
     }

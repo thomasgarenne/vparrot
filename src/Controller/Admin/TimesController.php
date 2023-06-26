@@ -6,11 +6,12 @@ use App\Entity\Times;
 use App\Form\TimesType;
 use App\Repository\TimesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted("ROLE_ADMIN")]
 #[Route('/admin/times', name: 'admin_times_')]
 class TimesController extends AbstractController
 {
@@ -21,7 +22,7 @@ class TimesController extends AbstractController
             'times' => $timesRepository->findAll(),
         ]);
     }
-
+    /*
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(TimesRepository $timesRepository, Request $request): Response
     {
@@ -41,7 +42,7 @@ class TimesController extends AbstractController
             'form' => $form,
         ]);
     }
-
+*/
     #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Times $time): Response
     {
@@ -58,6 +59,8 @@ class TimesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $timesRepository->save($time, true);
+
+            $this->addFlash('success', 'Horaires modifiées avec succés');
 
             return $this->redirectToRoute('admin_times_index');
         }

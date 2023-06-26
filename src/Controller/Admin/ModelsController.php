@@ -6,12 +6,13 @@ use App\Entity\Models;
 use App\Form\ModelsType;
 use App\Repository\BrandsRepository;
 use App\Repository\ModelsRepository;
-use PhpParser\Node\Expr\AssignOp\Concat;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted("ROLE_ADMIN_PRODUCT")]
 #[Route('/admin/models', name: 'admin_models_')]
 class ModelsController extends AbstractController
 {
@@ -34,6 +35,8 @@ class ModelsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $modelsRepository->save($model, true);
+
+            $this->addFlash('success', 'Modèle ajouté avec succés');
 
             return $this->redirectToRoute('admin_models_index');
         }
@@ -60,6 +63,8 @@ class ModelsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $modelsRepository->save($model, true);
 
+            $this->addFlash('success', 'Modèle modifié avec succés');
+
             return $this->redirectToRoute('admin_models_index');
         }
 
@@ -75,6 +80,8 @@ class ModelsController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $model->getId(), $request->request->get('_token'))) {
             $modelsRepository->remove($model, true);
         }
+
+        $this->addFlash('success', 'Modèle supprimé avec succés');
 
         return $this->redirectToRoute('admin_models_index', [], Response::HTTP_SEE_OTHER);
     }

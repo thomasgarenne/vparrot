@@ -13,7 +13,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted("ROLE_ADMIN_PRODUCT")]
 #[Route('/admin/cars', name: 'admin_cars_')]
 class CarsController extends AbstractController
 {
@@ -47,6 +49,8 @@ class CarsController extends AbstractController
             }
 
             $carsRepository->save($car, true);
+
+            $this->addFlash('success', 'Voiture ajouté avec succés');
 
             return $this->redirectToRoute('admin_cars_index');
         }
@@ -103,6 +107,8 @@ class CarsController extends AbstractController
             $carsRepository->remove($car, true);
         }
 
+        $this->addFlash('success', 'Voiture supprimé avec succés');
+
         return $this->redirectToRoute('admin_cars_index', [], Response::HTTP_SEE_OTHER);
     }
 
@@ -116,7 +122,6 @@ class CarsController extends AbstractController
 
             return new JsonResponse(['success' => true], 200);
         }
-
 
         return new JsonResponse(['error' => 'Token invalide'], 400);
     }

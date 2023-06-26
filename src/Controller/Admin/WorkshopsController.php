@@ -9,7 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted("ROLE_ADMIN")]
 #[Route('/admin/workshops', name: 'admin_workshops_')]
 class WorkshopsController extends AbstractController
 {
@@ -21,6 +23,7 @@ class WorkshopsController extends AbstractController
         ]);
     }
 
+    /*
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, WorkshopsRepository $workshopsRepository): Response
     {
@@ -39,6 +42,7 @@ class WorkshopsController extends AbstractController
             'form' => $form,
         ]);
     }
+    */
 
     #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Workshops $workshop): Response
@@ -57,6 +61,8 @@ class WorkshopsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $workshopsRepository->save($workshop, true);
 
+            $this->addFlash('success', 'Infos magasin modifié avec succés');
+
             return $this->redirectToRoute('admin_workshops_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -65,7 +71,7 @@ class WorkshopsController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    /*
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Workshops $workshop, WorkshopsRepository $workshopsRepository): Response
     {
@@ -75,4 +81,5 @@ class WorkshopsController extends AbstractController
 
         return $this->redirectToRoute('admin_workshops_index', [], Response::HTTP_SEE_OTHER);
     }
+*/
 }

@@ -17,11 +17,11 @@
         </thead>
         <tr>
             <th scope="row">{{ time.id }}</thead>
-            <td>{{time.day}}</td>
-            <td>{{time.openAm}}</td>            
-            <td>{{time.closeAm}}</td>            
-            <td>{{time.openPm}}</td>            
-            <td>{{time.closePm}}</td>            
+                        <td>{{time.day}}</td>
+                        <td>{{time.openAm.format('H:i')}}</td>            
+                        <td>{{time.closeAm.format('H:i')}}</td>            
+                        <td>{{time.openPm.format('H:i')}}</td>            
+                        <td>{{time.closePm.format('H:i')}}</td>        
             <td class="d-flex">
                 <a href="{{ path('admin_times_edit', {'id': time.id}) }}">
                     <button class="btn btn-warning">Modifier</button>

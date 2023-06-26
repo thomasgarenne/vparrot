@@ -5,10 +5,13 @@ namespace App\Form;
 use App\Entity\Cars;
 use App\Entity\Models;
 use App\Entity\Types;
+use App\Entity\Pictures;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -72,6 +75,14 @@ class CarsType extends AbstractType
                     },
                     'label' => 'modèle',
                     'attr' => ['class' => 'form-control'],
+                ]
+            )
+            ->add(
+                'pictures',
+                FileType::class,
+                [
+                    'multiple' => true,
+                    'mapped' => false,
                 ]
             );
     }

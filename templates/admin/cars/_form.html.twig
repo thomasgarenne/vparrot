@@ -1,4 +1,24 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+    {{ form_row(form.type) }}
+    {{ form_row(form.model) }}
+    {{ form_row(form.year) }}
+    {{ form_row(form.km) }}
+    {{ form_row(form.motor) }}
+    {{ form_row(form.power) }}
+    {{ form_row(form.color) }}
+
+    {% if app.request.attributes.get('_route') == 'admin_cars_edit' %}
+        <h2>Images</h2>
+        {% for picture in car.pictures %}
+            <div>
+                <img src="{{ asset('assets/uploads/' ~ picture.title) }}" alt="Image" width="150">
+                <a href="{{ path('admin_cars_delete_picture', {'id': picture.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ picture.id) }}">Supprimer</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    {{ form_row(form.pictures) }}
+
     <button class="btn {{btn|default('btn-primary')}}">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}

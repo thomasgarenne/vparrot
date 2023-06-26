@@ -18,6 +18,7 @@
                 <th>Moteur</th>
                 <th>Puissance</th>
                 <th>Couleur</th>
+                <th>images</th>
             </thead>
             <tr>
                 <th scope="row">{{ car.id }}</th>
@@ -28,7 +29,14 @@
                 <td>{{ car.km }}</td>
                 <td>{{ car.motor }}</td>
                 <td>{{ car.power }}</td>
-                <td>{{ car.color }}</td>           
+                <td>{{ car.color }}</td>   
+                <td>
+                    {% for car in car.pictures %}
+                    <div>
+                        <img src={{ asset("assets/uploads/" ~ car.title) }} >
+                    </div>
+                    {% endfor %}
+                </td>                  
                 <td class="d-flex">
                     <a href="{{ path('admin_cars_edit', {'id': car.id}) }}">
                         <button class="btn btn-warning m-1">Modifier</button>

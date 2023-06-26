@@ -1,5 +1,6 @@
 <div class="d-flex justify-content-around align-item-center">
     <p>DrivesCares</p>
+
     <table>
     <caption>Hours</caption>
         <thead>
@@ -9,53 +10,21 @@
             <td>Open</td>
             <td>Closed</td>
         </thead>
+        {% set time = opening.getOpening %}
+        
+        {% for t in time %}
         <tr>
-            <td>Lundi</td>
-            <td>10:00</td>
-            <td>13:00</td>
-            <td>14:00</td>
-            <td>18:00</td>
+            <td>{{ t.day }}</td>
+            <td>{{ t.openAm.format('H:i') }}</td>
+            <td>{{ t.closeAm.format('H:i') }}</td>
+            <td>{{ t.openPm.format('H:i') }}</td>
+            <td>{{ t.closepm.format('H:i') }}</td>
         </tr>
-        <tr>
-            <td>Mardi</td>
-            <td>10:00</td>
-            <td>13:00</td>
-            <td>14:00</td>
-            <td>18:00</td>
-        </tr>
-        <tr>
-            <td>Mercredi</td>
-            <td>10:00</td>
-            <td>13:00</td>
-            <td>14:00</td>
-            <td>18:00</td>
-        </tr>
-        <tr>
-            <td>Jeudi</td>
-            <td>10:00</td>
-            <td>13:00</td>
-            <td>14:00</td>
-            <td>18:00</td>
-        </tr>
-        <tr>
-            <td>Vendredi</td>
-            <td>10:00</td>
-            <td>13:00</td>
-            <td>14:00</td>
-            <td>18:00</td>
-        </tr>
-        <tr>
-            <td>Samedi</td>
-            <td>10:00</td>
-            <td>13:00</td>
-            <td>Fermé</td>
+        
+        {% endfor %}
 
-        </tr>
-        <tr>
-            <td>Dimanche</td>
-            <td>Fermé</td>
-        </tr>
     </table>
+
     <div class="d-flex flex-column">
         <h3>Contact Us</h3>
         <span>10 rue du boulot</span>
@@ -64,11 +33,13 @@
         <span>00 11 22 33 44 55</span>
         <span>adresse@mail.fr</span>
     </div>
+
     <ul class="list-unstyled">
         <li>Accueil</li>
         <li>Nous contacter</li>
     </ul>
 </div>
+
 <div class="d-flex justify-content-center">
     <span class="text-align-center">TWIT</span>
     <span>FB</span>

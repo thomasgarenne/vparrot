@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TimesRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TimesRepository::class)]
@@ -19,17 +20,17 @@ class Times
     #[ORM\ManyToOne(inversedBy: 'time')]
     private ?Workshops $workshops = null;
 
-    #[ORM\Column(length: 10)]
-    private ?string $open_am = null;
+    #[ORM\Column]
+    private ?DateTime $open_am = null;
 
-    #[ORM\Column(length: 10)]
-    private ?string $close_am = null;
+    #[ORM\Column]
+    private ?DateTime $close_am = null;
 
-    #[ORM\Column(length: 10)]
-    private ?string $open_pm = null;
+    #[ORM\Column]
+    private ?DateTime $open_pm = null;
 
-    #[ORM\Column(length: 10)]
-    private ?string $close_pm = null;
+    #[ORM\Column]
+    private ?DateTime $close_pm = null;
 
     public function getId(): ?int
     {
@@ -60,48 +61,48 @@ class Times
         return $this;
     }
 
-    public function getOpenAm(): ?string
+    public function getOpenAm(): ?DateTime
     {
         return $this->open_am;
     }
 
-    public function setOpenAm(string $open_am): static
+    public function setOpenAm(DateTime $open_am): static
     {
         $this->open_am = $open_am;
 
         return $this;
     }
 
-    public function getCloseAm(): ?string
+    public function getCloseAm(): ?DateTime
     {
         return $this->close_am;
     }
 
-    public function setCloseAm(string $close_am): static
+    public function setCloseAm(DateTime $close_am): static
     {
         $this->close_am = $close_am;
 
         return $this;
     }
 
-    public function getOpenPm(): ?string
+    public function getOpenPm(): ?DateTime
     {
         return $this->open_pm;
     }
 
-    public function setOpenPm(string $open_pm): static
+    public function setOpenPm(DateTime $open_pm): static
     {
         $this->open_pm = $open_pm;
 
         return $this;
     }
 
-    public function getClosePm(): ?string
+    public function getClosePm(): ?DateTime
     {
         return $this->close_pm;
     }
 
-    public function setClosePm(string $close_pm): static
+    public function setClosePm(DateTime $close_pm): static
     {
         $this->close_pm = $close_pm;
 

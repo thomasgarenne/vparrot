@@ -7,6 +7,9 @@
         {% include "_partials/_adminNavbar.html.twig" %}
         <div class="col-9">
         <h2>Liste des Horaires</h2>
+        <a href="{{ path('admin_times_new') }}">
+            <button class="btn btn-primary">add</button>
+        </a>
             <table class="table">
                 <thead>
                     <th>#</th>
@@ -20,10 +23,10 @@
                     <tr>
                         <th scope="row">{{ time.id }}</thead>
                         <td>{{time.day}}</td>
-                        <td>{{time.openAm}}</td>            
-                        <td>{{time.closeAm}}</td>            
-                        <td>{{time.openPm}}</td>            
-                        <td>{{time.closePm}}</td>            
+                        <td>{{time.openAm.format('H:i')}}</td>            
+                        <td>{{time.closeAm.format('H:i')}}</td>            
+                        <td>{{time.openPm.format('H:i')}}</td>            
+                        <td>{{time.closePm.format('H:i')}}</td>            
                         <td class="d-flex">
                             <a href="{{ path('admin_times_show', {'id': time.id}) }}"><button class="btn btn-info">Détails</button></a>
                             <a href="{{ path('admin_times_edit', {'id': time.id}) }}"><button class="btn btn-warning">Modifier</button></a>

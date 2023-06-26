@@ -35,7 +35,7 @@ class Cars
     #[ORM\Column(length: 50)]
     private ?string $color = null;
 
-    #[ORM\OneToMany(mappedBy: 'car', targetEntity: Pictures::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'car', targetEntity: Pictures::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $pictures;
 
     #[ORM\ManyToOne(inversedBy: 'cars')]

@@ -6,19 +6,52 @@ use App\Entity\Times;
 use App\Entity\Workshops;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraint;
 
 class TimesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('day')
-            ->add('open_am')
-            ->add('close_am')
-            ->add('open_pm')
-            ->add('close_pm')
+            ->add('day', ChoiceType::class, [
+                'choices' => [
+                    'lundi' => 'lundi',
+                    'mardi' => 'mardi',
+                    'mercredi' => 'mercredi',
+                    'jeudi' => 'jeudi',
+                    'vendredi' => 'vendredi',
+                    'samedi' => 'samedi',
+                    'dimanche' => 'dimanche',
+                ],
+            ])
+            ->add('open_am', TimeType::class, [
+                'widget' => 'choice',
+                'placeholder' => [
+                    'hour' => 'Hour', 'minute' => 'Minute',
+                ],
+            ])
+            ->add('close_am', TimeType::class, [
+                'widget' => 'choice',
+                'placeholder' => [
+                    'hour' => 'Hour', 'minute' => 'Minute',
+                ],
+            ])
+            ->add('open_pm', TimeType::class, [
+                'widget' => 'choice',
+                'placeholder' => [
+                    'hour' => 'Hour', 'minute' => 'Minute',
+                ],
+            ])
+            ->add('close_pm', TimeType::class, [
+                'widget' => 'choice',
+                'placeholder' => [
+                    'hour' => 'Hour', 'minute' => 'Minute',
+                ],
+            ])
             ->add(
                 'workshops',
                 EntityType::class,

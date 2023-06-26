@@ -22,7 +22,6 @@ class TimesController extends AbstractController
         ]);
     }
 
-    /*
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(TimesRepository $timesRepository, Request $request): Response
     {
@@ -42,7 +41,6 @@ class TimesController extends AbstractController
             'form' => $form,
         ]);
     }
-    */
 
     #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Times $time): Response

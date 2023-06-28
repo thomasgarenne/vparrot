@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Voiture{% endblock %}
+
+{% block body %}
+    <div>
+        {% include "cars/_filters.html.twig" %}   
+    </div>
+
+    <div id="js-filter-content">
+        {% include "cars/_content.html.twig" %}
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+<div class="w-75 m-auto">
+ <div class="row justify-content-center">
+{% for car in cars %}
+
+ <div class="card col-3 m-5">
+  <img src="{{ asset(car.pictures[0].title) }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ car.getModel.getBrand.name}}</h5>
+    <h6 class="card-title">{{ car.getModel.name }}</h6>
+    <div class="card-text d-flex m-auto">
+        <ul class="list-unstyled">
+            <li>{{ car.year.format('Y') }}</li>
+            <li>{{ car.km }}</li>
+        </ul>
+        <ul class="list-unstyled">
+            <li>{{ car.motor }}</li>
+            <li>{{ car.color }}</li>
+        </ul>
+    </div>
+    <span>{{ car.price }}</span>
+    <a href="{{ path('cars_show', {'id': car.id}) }}">
+        <button class="btn btn-success">Plus d'info</button>
+    </a>
+  </div>
+</div>
+{% endfor %} 
+</div>
+</div>
+
+{% block javascript %}
+    <script src="{{ asset('assets/js/filters.js') }}"></script>
+{% endblock %}

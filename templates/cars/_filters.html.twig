@@ -1,0 +1,38 @@
+{{ form_start(form, {attr: {class: 'pt-3 bg-light', id: 'js-filter-form'}})}}
+<div class="w-75 m-auto d-flex justify-content-evenly">
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Constructeurs
+    </button>
+    <ul class="dropdown-menu">
+      <li>{{ form_row(form.brands) }}</li>
+    </ul>
+  </div>
+
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Modèles
+    </button>
+    <ul class="dropdown-menu">
+      <li>{{ form_row(form.models) }}</li>
+    </ul>
+  </div>
+
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Types
+    </button>
+    <ul class="dropdown-menu">
+      <li class="dropdown-item">{{ form_row(form.types) }}</li>
+      </ul>
+  </div>
+
+    {{ form_row(form.priceMin) }}
+    {{ form_row(form.priceMax) }}
+    {{ form_row(form.kmMin) }}
+    {{ form_row(form.kmMax) }}
+    {{ form_row(form.reset, {attr: {id: 'reset'}}) }}
+    
+    
+</div>
+{{ form_end(form) }}

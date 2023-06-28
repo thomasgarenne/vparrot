@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Détails Véhicules{% endblock %}
+
+{% block body %}
+<section class="col-9 m-auto d-flex justify-content-center bg-light vh-100"> 
+    <div class="w-50-m3">
+        <img src="{{ asset(car.pictures[0].title) }}" class="card-img-top" alt="...">
+    </div>
+    <div class="w-50-m3">
+        <h3>Information de base...</h3>
+        <button class="btn btn-info" id="contact">Nous Contacter</button>
+    </div>
+</section>
+
+<section class="col-9 m-auto bg-dark vh-100">
+    <h3 class="text-white">Toutes les infos sur le véhicules ...</h3>
+</section>
+
+<section class="col-9 m-auto bg-light vh-100">
+    <p>Creation du formulaire de contact pré remplie</p>
+</section>
+{% endblock %}

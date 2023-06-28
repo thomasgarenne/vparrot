@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Times;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -16,10 +17,10 @@ class TimesFixtures extends Fixture implements DependentFixtureInterface
         foreach ($days as $day) {
             $time = new Times();
             $time->setDay($day);
-            $time->setOpenAm('10:00');
-            $time->setCloseAm('13:00');
-            $time->setOpenPm('14:00');
-            $time->setClosePm('18:00');
+            $time->setOpenAm(new DateTime());
+            $time->setCloseAm(new DateTime());
+            $time->setOpenPm(new DateTime());
+            $time->setClosePm(new DateTime());
 
             $work = $this->getReference('work-1');
             $time->setWorkshops($work);

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Cars;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -39,28 +40,97 @@ class CarsRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Cars[] Returns an array of Cars objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findSearch(SearchData $search): array
+    {
 
-//    public function findOneBySomeField($value): ?Cars
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $query = $this
+            ->createQueryBuilder('c')
+            ->select('c', 'm', 'b', 't')
+            ->join('c.type', 't')
+            ->join('c.model', 'm')
+            ->join('m.brand', 'b');
+
+        if (!empty($search->priceMin)) {
+            $query = $query
+                ->andWhere('c.price >= :priceMin')
+                ->setParameter('priceMin', $search->priceMin);
+        }
+
+        if (!empty($search->priceMax)) {
+            $query = $query
+                ->andWhere('c.price <= :priceMax')
+                ->setParameter('priceMax', $search->priceMax);
+        }
+
+        if (!empty($search->kmMin)) {
+            $query = $query
+                ->andWhere('c.km >= :kmMin')
+                ->setParameter('kmMin', $search->kmMin);
+        }
+
+        if (!empty($search->kmMax)) {
+            $query = $query
+                ->andWhere('c.km <= :kmMax')
+                ->setParameter('kmMax', $search->kmMax);
+        }
+
+        if (!empty($search->brands)) {
+            $query = $query
+                ->andWhere('b.id IN (:brands)')
+                ->setParameter('brands', $search->brands);
+        }
+
+        if (!empty($search->models)) {
+            $query = $query
+                ->andWhere('m.id IN (:models)')
+                ->setParameter('models', $search->models);
+        }
+
+        if (!empty($search->types)) {
+            $query = $query
+                ->andWhere('t.id IN (:types)')
+                ->setParameter('types', $search->types);
+        }
+
+        return $query->getQuery()->getResult();
+    }
+
+    /*
+    public function findBySomeField($filters)
+    {
+        $query = $this->createQueryBuilder('c');
+
+        if ($filters !== null) {
+            $query->andWhere('c.model IN(:models)')
+                ->setParameter(':models', array_values($filters));
+        }
+
+        return $query->getQuery()->getResult();
+    }
+*/
+
+    //    /**
+    //     * @return Cars[] Returns an array of Cars objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('c.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Cars
+    //    {
+    //        return $this->createQueryBuilder('c')
+    //            ->andWhere('c.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

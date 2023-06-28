@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Cars;
+use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -22,9 +23,11 @@ class CarsFixtures extends Fixture implements DependentFixtureInterface
             $car = new Cars();
             $car->setColor($faker->colorName());
             $car->setYear($faker->dateTime());
+            $car->setCreatedAt(new DateTimeImmutable());
             $car->setKm($faker->numberBetween(40000, 200000));
             $car->setMotor($faker->randomElement($motor));
             $car->setPower($faker->randomElement($power));
+            $car->setPrice($faker->numberBetween(3000, 50000));
 
             $type = $this->getReference('type-1');
             $car->setType($type);

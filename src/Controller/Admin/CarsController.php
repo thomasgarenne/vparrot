@@ -2,9 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Data\SearchData;
 use App\Entity\Cars;
 use App\Entity\Pictures;
 use App\Form\CarsType;
+use App\Form\SearchType;
 use App\Repository\CarsRepository;
 use App\Repository\PicturesRepository;
 use App\Service\PictureService;
@@ -19,11 +21,25 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/admin/cars', name: 'admin_cars_')]
 class CarsController extends AbstractController
 {
-    #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(CarsRepository $carsRepository): Response
+    #[Route('/', name: 'index', methods: ['GET', 'POST'])]
+    public function index(CarsRepository $carsRepository, Request $request): Response
     {
+        $data = new SearchData();
+        $form = $this->createForm(SearchType::class, $data);
+        $form->handleRequest($request);
+        $cars = $carsRepository->findSearch($data);
+
+        if ($request->get('ajax')) {
+            return new JsonResponse([
+                'content' => $this->renderView('admin/cars/_content.html.twig', [
+                    'cars' => $cars
+                ])
+            ]);
+        }
+
         return $this->render('admin/cars/index.html.twig', [
-            'cars' => $carsRepository->findAll(),
+            'cars' => $cars,
+            'form' => $form
         ]);
     }
 

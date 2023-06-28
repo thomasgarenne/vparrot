@@ -13,7 +13,7 @@ class CarsFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        $motor = ['essence', 'diesel', 'electrique'];
+        $motor = ['Essence', 'Diesel', 'Hybride', 'Electrique', 'GPL', 'Autre'];
         $power = [75, 90, 110, 130, 150];
 
         $faker = Factory::create('fr_FR');
@@ -29,7 +29,7 @@ class CarsFixtures extends Fixture implements DependentFixtureInterface
             $car->setPower($faker->randomElement($power));
             $car->setPrice($faker->numberBetween(3000, 50000));
 
-            $type = $this->getReference('type-1');
+            $type = $this->getReference('type-' . $i);
             $car->setType($type);
 
             $model = $this->getReference('mod-' . $i);

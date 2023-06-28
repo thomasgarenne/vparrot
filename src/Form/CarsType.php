@@ -33,7 +33,10 @@ class CarsType extends AbstractType
                 'choices' => [
                     'Essence' => 'Essence',
                     'Diesel' => 'Diesel',
+                    'Hybride' => 'Hybride',
                     'Electrique' => 'Electrique',
+                    'GPL' => 'GPL',
+                    'Autre' => 'Autre'
                 ]
             ])
             ->add('power')

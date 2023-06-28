@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Types{% endblock %}
+
+{% block body %}
+    <div class="col-9 m-auto">
+        <h2>Détails</h2>
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Types</th>
+                <th>Actions</th>
+            </thead>
+            <tr>
+                <td>{{ type.id }}</td>
+                <td>{{ type.name }}</td>
+                <td class="d-flex">
+                    <a href="{{ path('admin_types_edit', {'id': type.id}) }}">
+                        <button class="btn btn-warning">Modifier</button>
+                    </a>
+                    {{ include('admin/types/_delete.html.twig') }}
+                </td>
+            </tr>
+        </table>
+
+    <a href="{{ path('admin_types_index') }}">
+        <button class="btn btn-info">Retour à la liste</button>
+    </a>
+
+    </div>
+{% endblock %}

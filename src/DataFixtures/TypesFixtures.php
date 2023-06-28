@@ -10,12 +10,33 @@ class TypesFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $type = new Types();
-        $type->setName('Berline');
+        $styles = [
+            '4x4, Suv',
+            'Berline',
+            'Break',
+            'Cabriolet',
+            'Citadine',
+            'Coupé',
+            'Minibus',
+            'Monospace',
+            'Pick-up',
+            'Voiture sociéte',
+            'Autre'
+        ];
 
-        $manager->persist($type);
+        $i = 1;
 
-        $this->setReference('type-1', $type);
+        foreach ($styles as $style) {
+            $type = new Types();
+            $type->setName($style);
+
+            $manager->persist($type);
+
+            $this->setReference('type-' . $i, $type);
+
+            $i++;
+        }
+
 
         $manager->flush();
     }

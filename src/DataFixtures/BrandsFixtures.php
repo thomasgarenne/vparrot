@@ -11,7 +11,7 @@ class BrandsFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $count = 0;
-        $brands = ['Peugeot', 'Renault', 'Volkswagen'];
+        $brands = ['Audi', 'BMW', 'Citroen', 'Fiat', 'Ford', 'Mercedes-Benz', 'Opel', 'Peugeot', 'Renault', 'Volkswagen'];
 
         foreach ($brands as $name) {
             $count++;

@@ -26,7 +26,7 @@ class ModelsFixtures extends Fixture
 
             $model = new Models();
             $model->setName($car);
-            $model->setBrand($this->getReference('brand-1'));
+            $model->setBrand($this->getReference('brand-8'));
 
             $manager->persist($model);
 
@@ -38,7 +38,7 @@ class ModelsFixtures extends Fixture
 
             $model = new Models();
             $model->setName($car);
-            $model->setBrand($this->getReference('brand-2'));
+            $model->setBrand($this->getReference('brand-9'));
 
             $manager->persist($model);
 
@@ -50,7 +50,7 @@ class ModelsFixtures extends Fixture
 
             $model = new Models();
             $model->setName($car);
-            $model->setBrand($this->getReference('brand-3'));
+            $model->setBrand($this->getReference('brand-10'));
 
             $manager->persist($model);
 

@@ -27,12 +27,20 @@
             <p><a href="{{path('admin_models_new')}}">Ajouter un modèle</a></p>
         </div>
     </article>
-        <article class="card mb-2">
+    <article class="card mb-2">
         <div class="card-header">
             Commentaires
         </div>
         <div class="card-body">
             <p><a href="{{path('admin_comments_index')}}">Liste des commentaire</a></p>
+        </div>
+    </article>
+    <article class="card mb-2">
+        <div class="card-header">
+            Types
+        </div>
+        <div class="card-body">
+            <p><a href="{{path('admin_types_index')}}">Liste des types</a></p>
         </div>
     </article>
     {% if is_granted('ROLE_ADMIN') %}

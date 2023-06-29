@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Index Comments{% endblock %}
+
+{% block body %}
+    <section>
+        {% for comment in comments %}
+        {% if comment.valid %}
+            <div class="card col-3 mx-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ comment.lastname}} - {{ comment.firstname }}</h5>
+                <div class="card-text d-flex m-auto">
+                    <p>{{ comment.content }}</p>
+                </div>
+                <span>{{ comment.createdAt }}</span>
+            </div>
+            </div>
+        {% endif %}     
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -1,44 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
-<h1>Bienvenue sur la page d'Acceuil</h1>
-<section class="vh-100">
-    <div class="col-9 m-auto">
-        <h2>Nos services</h2>
+        <h2>Bienvenue sur la page d'Acceuil</h2>
 
-        <div class="row m-auto">
+        <section class="vh-100 col-9 m-auto">
+            <h2>Nouvelles arrivées</h2>
+            <div class="d-flex justify-content-center">
+                {% for car in cars %}
+                    <img src="{{ asset(car.pictures[0].title) }}" alt="{{ car.pictures[0].title }}">
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="vh-100 col-9 m-auto">
+            <h2 class="text-center">Nos services</h2>
+            <div class="row d-flex justify-content-center">
             {% for service in services %}
-                <div class="col-4 mx-3">
-                    <img src="{{ asset(service.picture) }}" alt="">
-                    <h4>{{ service.name }}</h4>
-                    <p>{{ service.description }}</p>
+                <div class="card mb-3 mx-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                    <img src="{{ asset(service.picture) }}" class="img-fluid rounded-start" alt="{{ service.name }}">
+                    </div>
+                    <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ service.name }}</h5>
+                        <p class="card-text">{{ service.description }}</p>
+                    </div>
+                    </div>
+                </div>
                 </div>
             {% endfor %}
+            </div>    
+        </section>
+
+    <section class="vh-100">
+        <div class="text-center">
+            <h2>Votre avis nous intéresse ! <span><a href="{{ path('comments_new') }}">Par ici !</a></span></h2>
+            <p>*****/5 sur 20054 avis</p>
+            <span><a href="{{ path('comments_index') }}">Voir tous les commentaires</a></span>
         </div>
-
-    </div>
-</section>
-
-<section class="vh-100">
-<div class="text-center">
-    <h2>Votre avis nous intéresse !</h2>
-    <p>*****/5 sur 20054 avis</p>
-</div>
-<div  class="d-flex justify-content-center">
-
-{% for comment in comments %}
-    <div class="card col-3 m-5">
-      <div class="card-body">
-        <h5 class="card-title">{{ comment.lastname}} - {{ comment.firstname }}</h5>
-        <div class="card-text d-flex m-auto">
-            <p>{{ comment.content }}</p>
+    
+        <div  class="row d-flex justify-content-center mt-3">
+        {% for comment in comments %}
+        {% if comment.valid %}
+            <div class="card col-3 mx-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ comment.lastname}} - {{ comment.firstname }}</h5>
+                <div class="card-text d-flex m-auto">
+                    <p>{{ comment.content }}</p>
+                </div>
+                <span>{{ comment.createdAt }}</span>
+            </div>
+            </div>
+        {% endif %}
+        {% endfor %}
         </div>
-        <span>{{ comment.createdAt }}</span>
-    </div>
-    </div>
-    {% endfor %}
-</div>
-</section>
+    </section>
+
 {% endblock %}

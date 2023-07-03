@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Comments;
+use App\Form\CommentsType;
 use App\Form\ValidCommentsType;
 use App\Repository\CommentsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,8 +20,31 @@ class CommentsController extends AbstractController
     public function index(CommentsRepository $commentsRepository): Response
     {
         return $this->render('admin/comments/index.html.twig', [
-            //'comments' => $commentsRepository->findBy([], ['created_at' => 'DESC']),
-            'comments' => $commentsRepository->findAll(),
+            'comments' => $commentsRepository->findBy([], ['created_at' => 'DESC']),
+        ]);
+    }
+
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    public function new(Request $request, CommentsRepository $commentsRepository): Response
+    {
+        $comment = new Comments();
+
+        $form = $this->createForm(CommentsType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setIsValid(true);
+
+            $commentsRepository->save($comment, true);
+
+            $this->addFlash('success', 'Commentaire ajouté avec succés');
+
+            return $this->redirectToRoute('admin_comments_index');
+        }
+
+        return $this->render('admin/comments/new.html.twig', [
+            'form' => $form,
+            'comment' => $comment,
         ]);
     }
 

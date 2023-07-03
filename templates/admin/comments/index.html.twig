@@ -7,6 +7,9 @@
         {% include "_partials/_adminNavbar.html.twig" %}
         <div class="col-9">
         <h2>Liste des Commentaires</h2>
+        <a href="{{ path('admin_comments_new') }}">
+             <button class="btn btn-primary">Ajouter</button>
+        </a>
             <table class="table">
                 <thead>
                     <th>#</th>

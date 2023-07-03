@@ -31,10 +31,37 @@ class MainController extends AbstractController
         return $this->render('main/mecanique.html.twig');
     }
 
-    #[Route('/carrosserie', name: 'app_carrosserie', methods: ['GET'])]
-    public function carrosserie(): Response
+    #[Route('/carrosserie', name: 'app_carrosserie', methods: ['GET', 'POST'])]
+    public function carrosserie(Request $request, MailerInterface $mailer): Response
     {
-        return $this->render('main/carrosserie.html.twig');
+        $form = $this->createForm(ContactsType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $email = (new TemplatedEmail)
+                ->from($data['email'])
+                ->to('toExample@mail.com')
+                ->subject('Devis')
+                ->htmlTemplate('emails/contact_info.html.twig')
+                ->context([
+                    'phone' => $data['phone'],
+                    'prenom' => $data['prenom'],
+                    'nom' => $data['nom'],
+                    'message' => $data['message'],
+                ]);
+
+            $mailer->send($email);
+
+            $this->addFlash('success', 'Message envoyé');
+
+            return $this->redirectToRoute('app_carrosserie');
+        }
+
+        return $this->render('main/carrosserie.html.twig', [
+            'form' => $form
+        ]);
     }
 
     #[Route('/contact', name: 'app_contact', methods: ['GET', 'POST'])]

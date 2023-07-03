@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}    
+    <section class="row">
+        <h2>Bienvenue sur la page de contact</h2>
+        <div class="col-6">
+            <div class="w-75 m-auto text-center">
+                <h4>Adresse :</h4>
+                <span>1 rue DrivesCares</span>
+                <span>31000 Toulouse</span>
+
+                <h4>Contact :</h4>
+                <span>00-00-00-00-00</span>
+                <span>to@example.com</span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="w-75 m-auto">
+                {{ form(form) }}
+            </div>      
+        </div>
+    </section>
+   
+{% endblock %}

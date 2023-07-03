@@ -19,6 +19,8 @@
                 <th>Puissance</th>
                 <th>Couleur</th>
                 <th>images</th>
+                <th>Ajouté le</th>
+                <th>Référence</th>
             </thead>
             <tr>
                 <th scope="row">{{ car.id }}</th>
@@ -36,7 +38,9 @@
                         <img src={{ asset("assets/uploads/" ~ car.title) }} >
                     </div>
                     {% endfor %}
-                </td>                  
+                </td>       
+                                <td>{{ car.createdAt.format('Y/m/d') }}</td>
+                <td>{{ car.ref }}</td>           
                 <td class="d-flex">
                     <a href="{{ path('admin_cars_edit', {'id': car.id}) }}">
                         <button class="btn btn-warning m-1">Modifier</button>

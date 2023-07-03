@@ -16,6 +16,7 @@
                     <th>Moteur</th>
                     <th>Couleur</th>
                     <th>Ajouté le</th>
+                    <th>Référence</th>
                 </thead>
                 {% for car in cars %}
                     <tr>
@@ -28,6 +29,7 @@
                         <td>{{ car.motor }}</td>
                         <td>{{ car.color }}</td>
                         <td>{{ car.createdAt.format('Y/m/d') }}</td>
+                        <th>{{ car.ref }}</th>
                         
                         <td class="d-flex">
                             <a href="{{ path('admin_cars_show', {'id': car.id}) }}"><button class="btn btn-info mx-2">Détails</button></a>

@@ -52,6 +52,9 @@ class CarsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $model = $car->getModel()->getName();
+
+            $car->setRef($model . uniqid());
 
             $pictures = $form->get('pictures')->getData();
 

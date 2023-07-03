@@ -49,6 +49,9 @@ class Cars
     #[ORM\Column]
     private ?int $price = null;
 
+    #[ORM\Column(length: 50)]
+    private ?string $ref = null;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
@@ -194,6 +197,18 @@ class Cars
     public function setPrice(int $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getRef(): ?string
+    {
+        return $this->ref;
+    }
+
+    public function setRef(string $ref): static
+    {
+        $this->ref = $ref;
 
         return $this;
     }

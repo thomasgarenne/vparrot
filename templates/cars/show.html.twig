@@ -9,6 +9,7 @@
     </div>
     <div class="w-50-m3">
         <h3>Information de base...</h3>
+        <span>{{ car.ref }}</span>
         <button class="btn btn-info" id="contact">Nous Contacter</button>
     </div>
 </section>
@@ -19,5 +20,13 @@
 
 <section class="col-9 m-auto bg-light vh-100">
     <p>Creation du formulaire de contact pré remplie</p>
+    {{ form_start(form) }}
+        {{ form_row(form.ref, {attr: {value: car.ref}}) }}
+        {{ form_row(form.model, {attr: {value: car.model.name}}) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.prenom) }}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.message) }}
+    {{ form_end(form) }}
 </section>
 {% endblock %}

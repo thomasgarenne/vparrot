@@ -90,6 +90,7 @@ class CarsType extends AbstractType
                 [
                     'multiple' => true,
                     'mapped' => false,
+                    'required' => false
                 ]
             );
     }

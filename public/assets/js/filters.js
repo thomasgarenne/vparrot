@@ -2,49 +2,6 @@ window.onload = () => {
 
     const FiltersForm = document.querySelector("#js-filter-form");
     const Content = document.querySelector("#js-filter-content");
-    const Pagination = document.querySelector("#js-filter-pagination");
-    const Sorting = document.querySelector("#js-filter-sorting");
-    const Reset = document.querySelector("#reset");
-
-    Pagination.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            e.preventDefault();
-
-            let url = e.target.getAttribute('href');
-            console.log(url);
-
-            fetch(url, {
-            headers: {
-                    "X-Requested-With": "XMLHttpRequest"
-                }
-            }).then(response => {
-                return response.json();
-            }).then(data => {
-                Content.innerHTML = data.content;
-                //history.replaceState({}, '', url);
-            }).catch(e => alert(e));
-        }
-    })
-
-    Sorting.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            e.preventDefault();
-
-            let url = e.target.getAttribute('href');
-            console.log(url);
-
-            fetch(url, {
-            headers: {
-                    "X-Requested-With": "XMLHttpRequest"
-                }
-            }).then(response => {
-                return response.json();
-            }).then(data => {
-                Content.innerHTML = data.content;
-                //history.replaceState({}, '', url);
-            }).catch(e => alert(e));
-        }
-    })
 
     document.querySelectorAll("input").forEach(input => {
         input.addEventListener("change", () => {
@@ -58,7 +15,7 @@ window.onload = () => {
                 Params.append(key, value);
             })         
 
-            fetch(Url.pathname + "?" + Params.toString(), {
+            fetch(Url.pathname + "?" + Params.toString() + '&ajax=1', {
                 headers: {
                     "X-Requested-With": "XMLHttpRequest"
                 }
@@ -66,12 +23,14 @@ window.onload = () => {
                 return response.json();
             }).then(data => {
                 Content.innerHTML = data.content;
-                //history.replaceState({}, '', Url.pathname + "?" + Params.toString());
             }).catch(e => alert(e));
         });
     })
 
+    const Reset = document.querySelector("#reset");
+
     Reset.addEventListener("click", ()  => {
+
         const Url = new URL(window.location.href);
 
         fetch(Url.pathname, {
@@ -81,7 +40,8 @@ window.onload = () => {
         }).then(response => {
             return response.json();
         }).then(data => {
-            Content.innerHTML = data.content;
+            const content = document.getElementById("js-filter-content");
+            content.innerHTML = data.content;
         }).catch(e => console.log(e));
     });
 }

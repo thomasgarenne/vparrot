@@ -3,12 +3,7 @@
         <div class="col-9">
 
         <h2>Liste des voitures</h2>
-        <a href="{{ path('admin_cars_new') }}"><button class="btn btn-primary">Ajouter</button></a>
-        <div class="d-flex justify-content-end" id="js-filter-sorting">
-            {{ knp_pagination_sortable(cars, 'Prix', 'c.price') }}
-            {{ knp_pagination_sortable(cars, 'Date', 'c.createdAt') }}
-        </div>
-        
+        <a href="{{ path('admin_cars_new') }}"><button class="btn btn-primary">Ajouter</button></a>        
             <table class="table">
                 <thead>
                     <th>#</th>

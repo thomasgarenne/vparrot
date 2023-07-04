@@ -4,6 +4,8 @@ namespace App\Data;
 
 class SearchData
 {
+    public int $page = 1;
+
     public array $brands = [];
 
     public array $models = [];

@@ -1,4 +1,8 @@
 <div class="w-75 m-auto">
+    <div class="d-flex justify-content-end" id="js-filter-sorting">
+        {{ knp_pagination_sortable(cars, 'Prix', 'c.price') }}
+        {{ knp_pagination_sortable(cars, 'Date', 'c.createdAt') }}
+    </div>
  <div class="row justify-content-center">
 {% for car in cars %}
 
@@ -25,6 +29,9 @@
 </div>
 {% endfor %} 
 </div>
+    <div class="navigation" id="js-filter-pagination">
+        {{ knp_pagination_render(cars) }}
+    </div>       
 </div>
 
 {% block javascript %}

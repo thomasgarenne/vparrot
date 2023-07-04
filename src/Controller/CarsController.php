@@ -22,15 +22,15 @@ class CarsController extends AbstractController
     public function index(CarsRepository $carsRepository, Request $request): Response
     {
         $data = new SearchData();
+        $data->page = $request->get('page', 1);
+
         $form = $this->createForm(SearchType::class, $data);
         $form->handleRequest($request);
         $cars = $carsRepository->findSearch($data);
 
-        if ($request->get('ajax')) {
+        if ($request->isXmlHttpRequest()) {
             return new JsonResponse([
-                'content' => $this->renderView('cars/_content.html.twig', [
-                    'cars' => $cars
-                ])
+                'content' => $this->renderView('cars/_content.html.twig', ['cars' => $cars]),
             ]);
         }
 

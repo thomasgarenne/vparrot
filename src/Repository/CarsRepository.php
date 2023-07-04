@@ -6,6 +6,8 @@ use App\Data\SearchData;
 use App\Entity\Cars;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Cars>
@@ -17,9 +19,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CarsRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Cars::class);
+        $this->paginator = $paginator;
     }
 
     public function save(Cars $entity, bool $flush = false): void
@@ -40,7 +44,7 @@ class CarsRepository extends ServiceEntityRepository
         }
     }
 
-    public function findSearch(SearchData $search): array
+    public function findSearch(SearchData $search): PaginationInterface
     {
 
         $query = $this
@@ -92,22 +96,16 @@ class CarsRepository extends ServiceEntityRepository
                 ->setParameter('types', $search->types);
         }
 
-        return $query->getQuery()->getResult();
+        //return $query->getQuery()->getResult();
+
+        $query = $query->getQuery();
+
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            12
+        );
     }
-
-    /*
-    public function findBySomeField($filters)
-    {
-        $query = $this->createQueryBuilder('c');
-
-        if ($filters !== null) {
-            $query->andWhere('c.model IN(:models)')
-                ->setParameter(':models', array_values($filters));
-        }
-
-        return $query->getQuery()->getResult();
-    }
-*/
 
     //    /**
     //     * @return Cars[] Returns an array of Cars objects

@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class CommentsType extends AbstractType
 {
@@ -16,14 +17,20 @@ class CommentsType extends AbstractType
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'required' => true,
+                'constraints' =>
+                new Length([], 2, 30, null, null, null, null, 'Vous devez rentrer au moins {{ limit }} caractères', 'Vous devez rentrer moins de {{ limit }} caractères'),
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
                 'required' => true,
+                'constraints' =>
+                new Length([], 2, 30, null, null, null, null, 'Vous devez rentrer au moins {{ limit }} caractères', 'Vous devez rentrer moins de {{ limit }} caractères'),
             ])
             ->add('content', TextType::class, [
                 'label' => 'Message',
                 'required' => true,
+                'constraints' =>
+                new Length([], 10, 200, null, null, null, null, 'Vous devez rentrer au moins {{ limit }} caractères', 'Vous devez rentrer moins de {{ limit }} caractères'),
             ]);
     }
 

@@ -6,6 +6,7 @@ use App\Repository\BrandsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BrandsRepository::class)]
 class Brands
@@ -16,6 +17,12 @@ class Brands
     private ?int $id = null;
 
     #[ORM\Column(length: 150)]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Vous devez écrire plus de {{ limit }} caractères',
+        maxMessage: 'Vous ne devez pas dépasser {{ limit }} caractères',
+    )]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'brand', targetEntity: Models::class, orphanRemoval: true)]

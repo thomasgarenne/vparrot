@@ -10,7 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Constraints\GreaterThan;
+use Symfony\Component\Validator\Constraints\LessThan;
 
 class TimesType extends AbstractType
 {
@@ -29,28 +30,48 @@ class TimesType extends AbstractType
                 ],
             ])
             ->add('open_am', TimeType::class, [
+                'label' => 'Ouverture matin',
                 'widget' => 'choice',
                 'placeholder' => [
                     'hour' => 'Hour', 'minute' => 'Minute',
                 ],
+                'constraints' => new LessThan([
+                    'propertyPath' => 'parent.all[close_am].data',
+                    'message' => 'Cette valeur ne peux pas être plus grande que la fermeture du matin'
+                ])
             ])
             ->add('close_am', TimeType::class, [
+                'label' => 'Fermeture matin',
                 'widget' => 'choice',
                 'placeholder' => [
                     'hour' => 'Hour', 'minute' => 'Minute',
                 ],
+                'constraints' => new LessThan([
+                    'propertyPath' => 'parent.all[open_pm].data',
+                    'message' => 'Cette valeur ne peux pas être plus grande que l\'horaire d\'ouverture de l\'après-midi'
+                ])
             ])
             ->add('open_pm', TimeType::class, [
+                'label' => 'Ouverture soir',
                 'widget' => 'choice',
                 'placeholder' => [
                     'hour' => 'Hour', 'minute' => 'Minute',
                 ],
+                'constraints' => new LessThan([
+                    'propertyPath' => 'parent.all[close_pm].data',
+                    'message' => 'Cette valeur ne peux pas être plus grande que l\'horaire de fermeture'
+                ])
             ])
             ->add('close_pm', TimeType::class, [
+                'label' => 'Fermeture soir',
                 'widget' => 'choice',
                 'placeholder' => [
                     'hour' => 'Hour', 'minute' => 'Minute',
                 ],
+                'constraints' => new GreaterThan([
+                    'propertyPath' => 'parent.all[open_am].data',
+                    'message' => 'Cette valeur ne peux pas être plus petite que la réouverture'
+                ])
             ])
             ->add(
                 'workshops',

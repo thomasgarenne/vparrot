@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="col-9 m-auto">
-        <h2>Modifier marque {{ brand.name }}</h2>
+        <h2>Constructeur {{ brand.name }}</h2>
         
         <table class="table">
             <thead>
@@ -23,6 +23,31 @@
                 </td>
             </tr>
         </table>
+
+        <h2>Modèles</h2>
+
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Modeles</th>
+                <th>Actions</th>
+            </thead>
+
+            {% for model in brand.getModels %}
+            <tr>
+                <td>{{ model.id }}</td>
+                <td>{{ model.name }}</td>
+                <td>
+                    <a href="{{ path('admin_models_edit', {'id': model.id}) }}">
+                        <button class="btn btn-warning">Modifier</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+
 
         <a href="{{ path('admin_brands_index') }}">
             <button class="btn btn-info">Retour à la liste</button>

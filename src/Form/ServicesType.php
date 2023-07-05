@@ -4,11 +4,11 @@ namespace App\Form;
 
 use App\Entity\Services;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ServicesType extends AbstractType
 {
@@ -21,8 +21,11 @@ class ServicesType extends AbstractType
             ])
             ->add('description', TextType::class, [
                 'constraints' => new Length(null, 10, 300, null, null, null, null,  'Vous devez rentrer au moins {{ limit }} caractères', 'Vous devez rentrer moins de {{ limit }} caractères'),
+            ])
+            ->add('picture', FileType::class, [
+                'mapped' => false,
+                'required' => true
             ]);
-        //->add('picture');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

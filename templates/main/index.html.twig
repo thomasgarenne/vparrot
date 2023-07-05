@@ -10,7 +10,13 @@
             <div class="d-flex justify-content-center">
                 {% for car in cars %}
                     <div class="mx-3">
-                        <img src={{ asset("assets/uploads/" ~ car.pictures[0].title) }} alt="{{ car.pictures[0].title }}">
+                        <a href="{{ path('cars_show', {'id': car.id }) }}">
+                            <img src={{ asset("assets/uploads/" ~ car.pictures[0].title) }} alt="{{ car.pictures[0].title }}">
+                            <div class="">
+                                <h5>{{ car.getModel.name }}</h5>
+                                <span>{{ car.price }} €</span>
+                            </div>
+                        </a>
                     </div>
                 {% endfor %}
             </div>

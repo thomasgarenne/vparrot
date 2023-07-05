@@ -24,6 +24,7 @@
                 <a href="{{ path('admin_services_edit', {'id': service.id}) }}">
                     <button class="btn btn-warning mx-2">Modifier</button>
                 </a>
+                {% include "admin/services/_delete.html.twig" %}
             </td>
         </tr>
     </table>

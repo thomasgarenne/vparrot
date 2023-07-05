@@ -48,6 +48,7 @@ class CarsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+
             $subject = $data['model'] . ' - ' . $data['ref'];
 
             $email = (new TemplatedEmail())

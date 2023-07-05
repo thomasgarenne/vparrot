@@ -10,38 +10,38 @@
         <a href="{{ path('admin_models_new') }}">
             <button class="btn btn-primary">Ajouter</button>
         </a>
-           
             {% for brand in brands %}
-                <h2>{{brand.name}}</h2>
-
-                <table class="table">
-                    <thead>
-                        <th>#</th>
-                        <th>Modèles</th>
-                        <th>Actions</th>
-                    </thead>
-
-                    {% for model in models %}                            
-                        {% if brand.id == model.getBrand.id %}
-                        <tr>
-                            <th>{{ model.id }}</th>
-                            <td>{{ model.name }}</td>
-                            <td class="d-flex">
-                               <a href="{{ path('admin_models_show', {id: model.id}) }}">
-                                    <button class="btn btn-info mx-2">Voir</button>
-                                </a>
-
-                                <a href="{{ path('admin_models_edit', {id: model.id}) }}">
-                                    <button class="btn btn-warning">Modifier</button>
-                                </a>
-                            </td>
-                        </tr>
-                        {% endif %}
-                    {% endfor %}                    
-
-                </table>
-            {% endfor %}
             
+            {% if brand.getModels is not empty %}
+            <h2>{{brand.name}}</h2>
+
+            <table class="table">
+                <thead>
+                    <th>#</th>
+                    <th>Modèles</th>
+                    <th>Actions</th>
+                </thead>
+            {% endif %}
+
+            {% for model in models %}                            
+            {% if brand.id == model.getBrand.id %}
+                <tr>
+                    <th>{{ model.id }}</th>
+                    <td>{{ model.name }}</td>
+                    <td class="d-flex">
+                        <a href="{{ path('admin_models_show', {id: model.id}) }}">
+                            <button class="btn btn-info mx-2">Voir</button>
+                        </a>
+                        <a href="{{ path('admin_models_edit', {id: model.id}) }}">
+                            <button class="btn btn-warning">Modifier</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endif %}
+            {% endfor %}  
+
+            </table>
+            {% endfor %}
         </div>
     </section>
 {% endblock %}

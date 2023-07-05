@@ -6,7 +6,10 @@
     <section class="row">
         {% include "_partials/_adminNavbar.html.twig" %}
         <div class="col-9">
-        <h2>Liste des Services</h2>
+            <h2>Liste des Services</h2>
+            <a href="{{ path('admin_services_new') }}">
+                <button class="btn btn-primary">Ajouter</button>
+            </a>
             <table class="table">
                 <thead>
                     <th>#</th>
@@ -26,11 +29,13 @@
                             <a href="{{ path('admin_services_show', {'id': service.id}) }}">
                                 <button class="btn btn-info">Details</button>
                             </a>
+                            <a href="{{ path('admin_services_edit', {'id': service.id}) }}">
+                                <button class="btn btn-warning">Modifier</button>
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
             </table>
-
         </div>
     </section>
 {% endblock %}

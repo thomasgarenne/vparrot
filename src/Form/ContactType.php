@@ -2,25 +2,26 @@
 
 namespace App\Form;
 
+use App\Entity\Cars;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Length;
 
 class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('ref', TextType::class, [
-                'disabled' => true
+            ->add('ref', HiddenType::class, [
+                'data' => Cars::class,
             ])
-            ->add('model', TextType::class, [
-                'disabled' => true
+            ->add('model', HiddenType::class, [
+                'data' => Cars::class
             ])
             ->add('email', EmailType::class)
             ->add('prenom', TextType::class)

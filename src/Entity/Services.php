@@ -13,7 +13,7 @@ class Services
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 150)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]

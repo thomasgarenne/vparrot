@@ -20,17 +20,14 @@ class ContactsType extends AbstractType
             ->add('email', EmailType::class)
             ->add('phone', TelType::class)
             ->add('prenom', TextType::class, [
-                'required',
                 'constraints' =>
                 new Length([], 2, 30, null, null, null, null, 'Vous devez rentrer au moins {{ limit }} caractères', 'Vous devez rentrer moins de {{ limit }} caractères'),
             ])
             ->add('nom', TextType::class, [
-                'required',
                 'constraints' =>
                 new Length([], 2, 30, null, null, null, null, 'Vous devez rentrer au moins {{ limit }} caractères', 'Vous devez rentrer moins de {{ limit }} caractères'),
             ])
             ->add('message', TextareaType::class, [
-                'required',
                 'constraints' =>
                 new Length([], 10, 300, null, null, null, null, 'Vous devez rentrer au moins {{ limit }} caractères', 'Vous devez rentrer moins de {{ limit }} caractères'),
             ])

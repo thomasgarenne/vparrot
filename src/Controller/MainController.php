@@ -26,9 +26,11 @@ class MainController extends AbstractController
     }
 
     #[Route('/mecanique', name: 'app_mecanique', methods: ['GET'])]
-    public function mecanique(): Response
+    public function mecanique(ServicesRepository $servicesRepository): Response
     {
-        return $this->render('main/mecanique.html.twig');
+        return $this->render('main/mecanique.html.twig', [
+            'services' => $servicesRepository->findAll()
+        ]);
     }
 
     #[Route('/carrosserie', name: 'app_carrosserie', methods: ['GET', 'POST'])]

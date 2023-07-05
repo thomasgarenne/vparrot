@@ -52,6 +52,15 @@ class Cars
     #[ORM\Column(length: 50)]
     private ?string $ref = null;
 
+    #[ORM\Column]
+    private ?string $description = null;
+
+    #[ORM\Column]
+    private ?int $doors = null;
+
+    #[ORM\Column]
+    private ?int $seats = null;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
@@ -209,6 +218,42 @@ class Cars
     public function setRef(string $ref): static
     {
         $this->ref = $ref;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDoors(): ?int
+    {
+        return $this->doors;
+    }
+
+    public function setDoors(int $doors): static
+    {
+        $this->doors = $doors;
+
+        return $this;
+    }
+
+    public function getSeats(): ?int
+    {
+        return $this->seats;
+    }
+
+    public function setSeats(int $seats): static
+    {
+        $this->seats = $seats;
 
         return $this;
     }

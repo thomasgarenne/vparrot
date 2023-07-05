@@ -3,9 +3,10 @@
 {% block title %}Détails Véhicules{% endblock %}
 
 {% block body %}
-<section class="col-9 m-auto d-flex justify-content-center align-items-center bg-light py-5 min-vh-100"> 
+<section class="col-9 m-auto bg-light py-5 min-vh-100"> 
+<div class="d-flex justify-content-center align-items-center">
     <div class="w-50">
-    <div id="carouselExampleIndicators" class="carousel slide w-75 m-auto">   
+        <div id="carouselExampleIndicators" class="carousel slide w-75 m-auto">   
         <div class="carousel-inner">
             {% for picture in car.pictures %}
             {% if car.pictures[0].id == picture.id %}
@@ -16,19 +17,19 @@
                 <img src={{ asset('assets/uploads/' ~ picture.title) }} class="d-block w-100" alt="voiture">
             </div>
             {% endfor %} 
-        </div>
+            </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-            
-    </div>  
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>         
+    </div> 
+     
     <div class="w-50">
         <h3>{{ car.getModel.getBrand.name }} {{ car.getModel.name }}</h3>
         <p>Publié le {{ car.createdAt.format('Y/m/d') }}</p>
@@ -65,9 +66,8 @@
             <button class="btn btn-info my-3">Nous Contacter</button>
         </a>
     </div>
-</section>
-
-<section class="col-9 m-auto py-5">
+</div>
+    <div>
     <h3>Information véhicule</h3>
     <table class="table">
             <thead>
@@ -93,6 +93,7 @@
                 <td>{{ car.ref }}</td>           
             </tr>
         </table>
+    </div>
 </section>
 
 <section id="contact" class="col-9 m-auto bg-light min-vh-100 py-5">

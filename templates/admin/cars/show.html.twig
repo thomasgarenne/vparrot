@@ -13,33 +13,31 @@
                 <th>Type</th>
                 <th>Marque</th>
                 <th>Modèle</th>
-                <th>Year</th>
+                <th>Années</th>
                 <th>Km</th>
                 <th>Moteur</th>
                 <th>Puissance</th>
+                <th>Portes</th>
+                <th>Sièges</th>
                 <th>Couleur</th>
-                <th>images</th>
+                <th>Description</th>
                 <th>Ajouté le</th>
                 <th>Référence</th>
             </thead>
             <tr>
                 <th scope="row">{{ car.id }}</th>
-                <td>{{ car.type.id }}</td>
+                <td>{{ car.type.name }}</td>
                 <td>{{ car.getModel.getBrand.name}}</td>
                 <td>{{ car.getModel.name }}</td>
-                <td>{{ car.year.format('Y-m-d') }}</td>        
+                <td>{{ car.year.format('Y') }}</td>        
                 <td>{{ car.km }}</td>
                 <td>{{ car.motor }}</td>
                 <td>{{ car.power }}</td>
+                <td>{{ car.doors }}</td>
+                <td>{{ car.seats }}</td>
                 <td>{{ car.color }}</td>   
-                <td>
-                    {% for car in car.pictures %}
-                    <div>
-                        <img src={{ asset("assets/uploads/" ~ car.title) }} >
-                    </div>
-                    {% endfor %}
-                </td>       
-                                <td>{{ car.createdAt.format('Y/m/d') }}</td>
+                <td>{{ car.description }}</td>   
+                <td>{{ car.createdAt.format('Y/m/d') }}</td>
                 <td>{{ car.ref }}</td>           
                 <td class="d-flex">
                     <a href="{{ path('admin_cars_edit', {'id': car.id}) }}">
@@ -50,8 +48,16 @@
             </tr>
         </table>
 
+        <h2>Images</h2>
+
+        <div class="d-flex">
+        {% for picture in car.pictures %}
+            <img src={{ asset("assets/uploads/" ~ picture.title) }} >
+        {% endfor %}
+        </div>
+
         <a href="{{ path('admin_cars_index') }}">
-            <button class="btn btn-info m-1">Retour à la liste</button>
+            <button class="btn btn-info my-3">Retour à la liste</button>
         </a>
     </div>
 {% endblock %}

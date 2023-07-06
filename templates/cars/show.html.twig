@@ -3,10 +3,10 @@
 {% block title %}Détails Véhicules{% endblock %}
 
 {% block body %}
-<section class="col-9 m-auto bg-light py-5 min-vh-100"> 
+<section class="col-9 m-auto py-5 min-vh-100"> 
 <div class="d-flex justify-content-center align-items-center">
     <div class="w-50">
-        <div id="carouselExampleIndicators" class="carousel slide w-75 m-auto">   
+        <div id="carouselExampleIndicators" class="carousel slide w-50 m-auto">   
         <div class="carousel-inner">
             {% for picture in car.pictures %}
             {% if car.pictures[0].id == picture.id %}
@@ -57,11 +57,15 @@
             </tr>
             <tr>
                 <th>Référence</th>
-                <td><td>{{ car.ref }}</td></td>  
+                <td>{{ car.ref }}</td><  
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ car.price }}</td> 
             </tr>
         </table>
 
-        <h5>{{ car.price }} €</h5>
+        
         <a href="#contact" >
             <button class="btn btn-info my-3">Nous Contacter</button>
         </a>
@@ -70,33 +74,62 @@
     <div>
     <h3>Information véhicule</h3>
     <table class="table">
-            <thead>
-                <th>Type</th>
-                <th>Marque</th>
-                <th>Modèle</th>
-                <th>Year</th>
-                <th>Km</th>
-                <th>Moteur</th>
-                <th>Puissance</th>
-                <th>Couleur</th>
-                <th>Référence</th>
-            </thead>
-            <tr>
-                <td>{{ car.type.name }}</td>
-                <td>{{ car.getModel.getBrand.name}}</td>
-                <td>{{ car.getModel.name }}</td>
-                <td>{{ car.year.format('Y') }}</td>        
-                <td>{{ car.km }}</td>
-                <td>{{ car.motor }}</td>
-                <td>{{ car.power }}</td>
-                <td>{{ car.color }}</td>  
-                <td>{{ car.ref }}</td>           
-            </tr>
+        <tr>
+            <th>Type de véhicule</th>
+            <td>{{ car.type.name }}</td>
+        </tr>
+        <tr>
+           <th>Marque constructeur</th>
+           <td>{{ car.getModel.getBrand.name}}</td>
+        </tr> 
+        <tr>
+            <th>Modèle voiture</th>
+            <td>{{ car.getModel.name }}</td>       
+        </tr>
+        <tr>
+            <th>Mise en circulation</th>
+            <td>{{ car.year.format('m/Y') }}</td>              
+        </tr>
+        <tr>
+            <th>Nombre de kilomètres</th>
+            <td>{{ car.km }}</td>      
+        </tr>
+        <tr>
+             <th>Type de moteur</th>
+            <td>{{ car.motor }}</td>  
+        </tr>
+        <tr>
+             <th>Puissance</th>
+            <td>{{ car.power }}</td>
+        </tr>
+        <tr>
+            <th>Couleur</th>
+            <td>{{ car.color }}</td>
+        </tr>
+        <tr>
+            <th>Prix</th>
+            <td>{{ car.price }}</td>
+        </tr>                    
+        <tr>
+            <th>Nombres de portes</th>
+            <td>{{ car.doors }}</td>
+        </tr>
+        <tr>
+            <th>Nombre de places</th>
+            <td>{{ car.seats }}</td>
+        </tr>
+        <tr>
+            <th>Référence véhicule</th>
+            <td>{{ car.ref }}</td>
+        </tr>       
         </table>
+    </div>
+    <div>
+        {{ car.description }}
     </div>
 </section>
 
-<section id="contact" class="col-9 m-auto bg-light min-vh-100 py-5">
+<section id="contact" class="col-9 m-auto min-vh-100 py-5">
     <h2>Demande de contact</h2>
     <div class="w-75 m-auto">
     {{ form_start(form) }}

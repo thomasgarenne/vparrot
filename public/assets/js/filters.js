@@ -27,6 +27,48 @@ window.onload = () => {
         });
     })
 
+    const Sorting = document.querySelector("#js-filter-sorting");
+
+    Sorting.addEventListener("click", e => {
+
+        if (e.target.tagName === 'A') {
+            e.preventDefault();
+            url = e.target.getAttribute('href');
+        }
+
+        fetch(url, {
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+            Content.innerHTML = data.content;
+            Sorting.innerHTML = data.sorting;
+        }).catch(e => alert(e));    
+    })
+
+    const Pagination = document.querySelector("#js-filter-pagination");
+    
+    Pagination.addEventListener("click", e => {
+
+        if (e.target.tagName === 'A') {
+            e.preventDefault();
+            url = e.target.getAttribute('href');
+        }
+
+        fetch(url, {
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        }).then(response => {
+            return response.json();
+        }).then(data => {
+            Content.innerHTML = data.content;
+            Pagination.innerHTML = data.pagination;
+        }).catch(e => alert(e));    
+    })
+
     const Reset = document.querySelector("#reset");
 
     Reset.addEventListener("click", ()  => {

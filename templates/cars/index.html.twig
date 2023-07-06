@@ -7,7 +7,22 @@
         {% include "cars/_filters.html.twig" %}   
     </div>
 
-    <div id="js-filter-content">
-        {% include "cars/_content.html.twig" %}
+    <div id="js-filter-sorting">
+       {% include "cars/_sorting.html.twig" %}
     </div>
+
+    <div class="container">
+        <div class="row d-flex justify-content-center" id="js-filter-content">
+            {% include "cars/_content.html.twig" %}
+        </div>
+    </div>
+
+    <div class="navigation"  id="js-filter-pagination">
+        {% include "cars/_pagination.html.twig" %}
+    </div> 
+
+{% block javascript %}
+    <script src="{{ asset('assets/js/filters.js') }}"></script>
+{% endblock %}
+
 {% endblock %}

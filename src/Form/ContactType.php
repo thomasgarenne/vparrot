@@ -23,11 +23,21 @@ class ContactType extends AbstractType
             ->add('model', HiddenType::class, [
                 'data' => Cars::class
             ])
-            ->add('email', EmailType::class)
-            ->add('prenom', TextType::class)
-            ->add('nom', TextType::class)
-            ->add('message', TextareaType::class)
-            ->add('envoyer', SubmitType::class);
+            ->add('email', EmailType::class, [
+                'label' => 'Email'
+            ])
+            ->add('prenom', TextType::class, [
+                'label' => 'Prénom'
+            ])
+            ->add('nom', TextType::class, [
+                'label' => 'Nom'
+            ])
+            ->add('message', TextareaType::class, [
+                'label' => 'Message'
+            ])
+            ->add('envoyer', SubmitType::class, [
+                'label' => 'Envoyer'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

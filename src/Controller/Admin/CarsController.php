@@ -34,6 +34,8 @@ class CarsController extends AbstractController
         if ($request->isXmlHttpRequest()) {
             return new JsonResponse([
                 'content' => $this->renderView('admin/cars/_content.html.twig', ['cars' => $cars]),
+                'sorting' => $this->renderView('admin/cars/_sorting.html.twig', ['cars' => $cars]),
+                'pagination' => $this->renderView('admin/cars/_pagination.html.twig', ['cars' => $cars]),
             ]);
         }
 

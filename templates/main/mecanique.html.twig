@@ -4,20 +4,15 @@
 
 {% block body %}
 
-<h2>Mecanique</h2> 
-<section class="min-vh-100">
+<section class="min-vh-100 m-5">
+    <h2>Entretien et révision automobile</h2> 
     <div class="row justify-content-center">
      {% for service in services %}
-       
-        <div class="card col-sm-8 col-md-2 m-3">
-            <img src={{ asset(service.picture) }} class="card-img-top" alt="...">
+        <div class="card col-sm-8 col-md-4 col-xl-2 m-3 p-0">
+            <img src={{ asset('assets/uploads/' ~ service.picture) }} class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ service.name }}</h5>
-                <div class="card-text d-flex m-auto">
-                    <ul class="list-unstyled">
-                        <li>{{ service.description }}</li>
-                    </ul>
-                </div>
+                    <p>{{ service.description }}</p>           
             </div>
         </div>
     {% endfor %}

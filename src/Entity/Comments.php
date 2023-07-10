@@ -77,7 +77,7 @@ class Comments
 
     public function getCreatedAt(): mixed
     {
-        return $this->created_at->format('Y-m-d H:i:s');
+        return $this->created_at;
     }
 
     public function setCreatedAt(\DateTimeImmutable $created_at): static

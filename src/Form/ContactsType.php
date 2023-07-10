@@ -30,8 +30,7 @@ class ContactsType extends AbstractType
             ->add('message', TextareaType::class, [
                 'constraints' =>
                 new Length([], 10, 300, null, null, null, null, 'Vous devez rentrer au moins {{ limit }} caractères', 'Vous devez rentrer moins de {{ limit }} caractères'),
-            ])
-            ->add('envoyer', SubmitType::class);
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

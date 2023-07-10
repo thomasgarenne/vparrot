@@ -4,8 +4,8 @@
 
 {% block body %}
 <section class="col-9 m-auto py-5 min-vh-100"> 
-<div class="d-flex justify-content-center align-items-center">
-    <div class="w-50">
+<div class="row">
+    <div class="col-xs-12 col-lg-6 pb-3">
         <div id="carouselExampleIndicators" class="carousel slide w-50 m-auto">   
         <div class="carousel-inner">
             {% for picture in car.pictures %}
@@ -30,7 +30,7 @@
         </div>         
     </div> 
      
-    <div class="w-50">
+    <div class="col-xs-12 col-lg-6">
         <h3>{{ car.getModel.getBrand.name }} {{ car.getModel.name }}</h3>
         <p>Publié le {{ car.createdAt.format('Y/m/d') }}</p>
 
@@ -67,11 +67,11 @@
 
         
         <a href="#contact" >
-            <button class="btn btn-info my-3">Nous Contacter</button>
+            <button class="btn-infos">Nous Contacter</button>
         </a>
     </div>
 </div>
-    <div>
+    <div class="m-5">
     <h3>Information véhicule</h3>
     <table class="table">
         <tr>
@@ -125,7 +125,9 @@
         </table>
     </div>
     <div>
-        {{ car.description }}
+        <h3>Desriptions et équipements</h3>
+        <p class="border rounded pb-5">{{ car.description }}</p>
+        
     </div>
 </section>
 
@@ -139,6 +141,7 @@
         {{ form_row(form.prenom) }}
         {{ form_row(form.nom) }}
         {{ form_row(form.message) }}
+         <button class="btn-form">Envoyer</button> 
     {{ form_end(form) }}
     </div>
 </section>

@@ -3,13 +3,17 @@
 {% block title %}Carrosserie{% endblock %}
 
 {% block body %}
-    <section class="row">
+    <section class="row m-5">
+        <h2>Demandez nous un devis</h2>
         <div class="col-md-6 d-flex justify-content-center">
             <img src={{ asset('assets/uploads/service2.jpg') }} alt="">
         </div>
         <div class="col-md-6">
             <div class="w-75 m-auto">
-                {{ form(form) }}
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <button class="btn-form">Envoyer</button>
+                {{ form_end(form) }}
             </div>
         </div>
     </section>

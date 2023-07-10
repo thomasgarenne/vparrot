@@ -3,24 +3,41 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}    
-    <section class="row">
-        <h2>Bienvenue sur la page de contact</h2>
-        <div class="col-6">
+    <div class="row m-5">
+    <h2>Contactez-nous</h2>
+        <div class="col-sm-12 col-lg-6">
             <div class="w-75 m-auto text-center">
-                <h4>Adresse :</h4>
-                <span>1 rue DrivesCares</span>
-                <span>31000 Toulouse</span>
-
-                <h4>Contact :</h4>
-                <span>00-00-00-00-00</span>
-                <span>to@example.com</span>
+                <h3>Informations de contact :</h3>
+                <ul>
+                    <li>
+                        <span>00-00-00-00-00</span>
+                    </li>
+                    <li>
+                        <a href="mailto:#">contact@drivescares.com</a>
+                    </li>
+                    <li>
+                        Place du capitol
+                    </li>
+                    <li>
+                        31000 Toulouse
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-sm-12 col-lg-6">
+        <h3>Formulaire de contact</h3>
             <div class="w-75 m-auto">
-                {{ form(form) }}
+                {{ form_start(form) }}
+                    {{form_widget(form)}}
+                    <button class="btn-form">Envoyer</button>               
+                {{ form_end(form) }}
             </div>      
         </div>
-    </section>
+    </div>
+    <div>
+        <h3 class="text-center">Nous situer</h3>
+        <iframe class="w-100 px-5 pb-5" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92456.82685637547!2d1.350442170829103!3d43.600797974167165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aebb6fec7552ff%3A0x406f69c2f411030!2sToulouse!5e0!3m2!1sfr!2sfr!4v1688991405449!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+         
    
 {% endblock %}

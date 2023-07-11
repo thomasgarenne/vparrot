@@ -57,6 +57,16 @@ form {
     margin-top: 1rem;
 }
 
+.note {
+    color: #FFB549 !important;
+}
+
+.ratings i{
+    
+    color:#cecece;
+    font-size:20px;
+}
+
 /* PAGINATION */
 
 .pagination {
@@ -222,7 +232,6 @@ footer a {
 
 .avis a {
     color: #4ECDC4;
-    text-decoration: none;
 }
 
 .car .group {

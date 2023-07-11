@@ -18,7 +18,8 @@ class CommentsFixtures extends Fixture
             $comment->setFirstname($faker->firstName());
             $comment->setLastname($faker->LastName());
             $comment->setContent($faker->text(50));
-            $comment->setIsValid(false);
+            $comment->setNote(3);
+            $comment->setIsValid(true);
 
             $manager->persist($comment);
         }

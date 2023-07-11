@@ -12,9 +12,9 @@ class WorkshopFixtures extends Fixture
     {
         $workshop = new Workshops();
         $workshop->setName('DrivesCares');
-        $workshop->setAddress('10 rue du garage');
-        $workshop->setZipcode('33000');
-        $workshop->setCity('Bordeaux');
+        $workshop->setAddress('Place du capitol');
+        $workshop->setZipcode('31000');
+        $workshop->setCity('Toulouse');
 
         $manager->persist($workshop);
 

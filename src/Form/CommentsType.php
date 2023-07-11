@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Comments;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,6 +32,15 @@ class CommentsType extends AbstractType
                 'required' => true,
                 'constraints' =>
                 new Length([], 10, 200, null, null, null, null, 'Vous devez rentrer au moins {{ limit }} caractères', 'Vous devez rentrer moins de {{ limit }} caractères'),
+            ])
+            ->add('note', ChoiceType::class, [
+                'choices' => [
+                    1 => 1,
+                    2 => 2,
+                    3 => 3,
+                    4 => 4,
+                    5 => 5,
+                ]
             ]);
     }
 

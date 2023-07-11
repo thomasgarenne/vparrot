@@ -29,6 +29,9 @@ class Comments
     #[ORM\Column(options: ['default' => 0])]
     private ?bool $is_valid = null;
 
+    #[ORM\Column]
+    private ?int $note = null;
+
     public function __construct()
     {
         $this->setCreatedAt(new DateTimeImmutable());
@@ -95,6 +98,18 @@ class Comments
     public function setIsValid(bool $is_valid): static
     {
         $this->is_valid = $is_valid;
+
+        return $this;
+    }
+
+    public function getNote(): ?int
+    {
+        return $this->note;
+    }
+
+    public function setNote(int $note): static
+    {
+        $this->note = $note;
 
         return $this;
     }

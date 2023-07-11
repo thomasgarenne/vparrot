@@ -12,6 +12,7 @@
                 <th>Prénoms</th>
                 <th>Noms</th>
                 <th>Messages</th>
+                <th>Notes</th>
                 <th>Dates</th>
                 <th>Validé</th>
             </thead>
@@ -20,6 +21,7 @@
                 <td>{{comment.firstname}}</td>
                 <td>{{comment.lastname}}</td>
                 <td>{{comment.content}}</td>
+                <td class="note">{{comment.note}}</td>
                 <td>{{comment.createdAt.format('d/m/Y')}}</td>
                 <td>
                     <div class="form-check form-switch">

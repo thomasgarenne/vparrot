@@ -18,10 +18,24 @@ class MainController extends AbstractController
     #[Route('/', name: 'app_main')]
     public function index(CarsRepository $carsRepository, ServicesRepository $servicesRepository, CommentsRepository $commentsRepository): Response
     {
+        $comments = $commentsRepository->findBy(['is_valid' => true]);
+        $notes = [];
+
+        foreach ($comments as $comment) {
+            $notes[] = $comment->getNote();
+        }
+
+        $count = count($notes);
+        $total = array_sum($notes);
+
+        $average = ceil($total / $count);
+
         return $this->render('main/index.html.twig', [
             'cars' => $carsRepository->findBy([], ['createdAt' => 'DESC'], 3),
             'services' => $servicesRepository->findAll(),
             'comments' => $commentsRepository->findBy(['is_valid' => true], ['created_at' => 'DESC'], 3),
+            'count' => $count,
+            'average' => $average,
         ]);
     }
 

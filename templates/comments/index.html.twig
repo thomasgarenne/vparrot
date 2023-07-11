@@ -10,7 +10,8 @@
             <div class="card col-12 m-3">
             <div class="card-body">
                 <h5 class="card-title">{{ comment.lastname}} - {{ comment.firstname }}</h5>
-                <div class="card-text d-flex m-auto">
+                <div class="card-text d-flex flex-column m-auto">
+                    <span class="note">Note {{ comment.note }} / 5</span>
                     <p>{{ comment.content }}</p>
                 </div>
                 <span>{{ comment.createdAt.format('d/m/Y') }}</span>

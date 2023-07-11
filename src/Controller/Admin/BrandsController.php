@@ -34,7 +34,7 @@ class BrandsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $brandsRepository->save($brand, true);
 
-            $this->addFlash('success', 'Nouvelle marque ajoutée');
+            $this->addFlash('success', 'Constructeur ajouté');
 
             return $this->redirectToRoute('admin_brands_index', [], Response::HTTP_SEE_OTHER);
         } else {
@@ -64,7 +64,7 @@ class BrandsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $brandsRepository->save($brand, true);
 
-            $this->addFlash('success', 'Marque modifiée');
+            $this->addFlash('success', 'Constructeur modifié');
 
             return $this->redirectToRoute('admin_brands_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -82,7 +82,7 @@ class BrandsController extends AbstractController
             $brandsRepository->remove($brand, true);
         }
 
-        $this->addFlash('success', 'Marque suprimée');
+        $this->addFlash('success', 'Constructeur suprimé');
 
         return $this->redirectToRoute('admin_brands_index', [], Response::HTTP_SEE_OTHER);
     }

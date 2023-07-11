@@ -1,7 +1,13 @@
 {% extends "base.html.twig" %}
 
-{% block title %}New Comments{% endblock %}
+{% block title %}Ajout Commentaires{% endblock %}
 
 {% block body %}
-    {% include "comments/_form.html.twig" %}
+    <div class="w-75 m-auto min-vh-100">
+        <h2>Ajout commentaire</h2>
+        {% include "comments/_form.html.twig" %}
+        <a href="{{ path('admin_models_index') }}">
+            <button class="btn btn-info mt-2">Retour à la liste</button>
+        </a>
+    </div>
 {% endblock %}

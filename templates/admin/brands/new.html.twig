@@ -1,16 +1,15 @@
 {% extends "base.html.twig" %}
 
-{% block title %}New Brand{% endblock %}
+{% block title %}Ajout constructeur{% endblock %}
 
 {% block body %}
     
-    <div class="col-9 m-auto">
-        <h1>New Brand</h1>
-
-       <div class="w-75 m-auto">
-          {{ include('admin/brands/_form.html.twig') }}
-       </div>
-        <a href="{{ path('admin_brands_index') }}">back to list</a>
+    <div class="w-75 m-auto min-vh-100">
+        <h2>Ajouter un constructeur</h2>
+        {{ include('admin/brands/_form.html.twig') }}
+        <a href="{{ path('admin_brands_index') }}">
+            <button class="btn btn-info mt-2">Retour à la liste</button>
+        </a>
     </div>
 
 {% endblock %}

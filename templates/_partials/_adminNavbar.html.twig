@@ -10,11 +10,11 @@
     </article>
         <article class="card mb-2">
         <div class="card-header">
-            Marques
+            Constructeurs
         </div>
         <div class="card-body">
-            <p><a href="{{path('admin_brands_index')}}">Liste des marques</a></p>
-            <p><a href="{{path('admin_brands_new')}}">Ajouter une marque</a></p>
+            <p><a href="{{path('admin_brands_index')}}">Liste des constructeur</a></p>
+            <p><a href="{{path('admin_brands_new')}}">Ajouter un constructeur</a></p>
         </div>
     </article>
     <article class="card mb-2">
@@ -32,14 +32,7 @@
         </div>
         <div class="card-body">
             <p><a href="{{path('admin_comments_index')}}">Liste des commentaire</a></p>
-        </div>
-    </article>
-    <article class="card mb-2">
-        <div class="card-header">
-            Types
-        </div>
-        <div class="card-body">
-            <p><a href="{{path('admin_types_index')}}">Liste des types</a></p>
+            <p><a href="{{path('admin_comments_new')}}">Ajouter un commentaire</a></p>
         </div>
     </article>
     {% if is_granted('ROLE_ADMIN') %}

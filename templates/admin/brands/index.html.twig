@@ -1,13 +1,14 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Categories Index{% endblock %}
+{% block title %}Index constructeur{% endblock %}
 
 {% block body %}
     <section class="row">
         {% include "_partials/_adminNavbar.html.twig" %}
         <div class="col-9">
-        <h2>Liste des Marques</h2>
+        <h2>Liste des constructeurs</h2>
         <a href="{{ path('admin_brands_new') }}"><button class="btn btn-primary">Ajouter</button></a>
+        <div class="table-responsive">
             <table class="table">
                 <thead>
                     <th>#</th>
@@ -29,6 +30,7 @@
                     </tr>
                 {% endfor %}
             </table>
+        </div>
         </div>
     </section>
 {% endblock %}

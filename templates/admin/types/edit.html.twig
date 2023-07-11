@@ -1,15 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Types{% endblock %}
+{% block title %}Modifier types{% endblock %}
 
 {% block body %}
-<div class="col-9 m-auto">
-    <h2>Modifier un Types</h2>
-    <div class="w-75 m-auto">
-    {{ include('admin/types/_form.html.twig', {'color': 'warning', 'button_label': 'Modifier'}) }}
+    <div class="w-75 m-auto min-vh-100">
+        <h2>Modifier un Types</h2>
+        {{ include('admin/types/_form.html.twig', {'color': 'warning', 'button_label': 'Modifier'}) }}
+        <a href="{{ path('admin_types_index') }}">
+            <button class="btn btn-info mt-2">Retour à la liste</button>
+        </a>    
     </div>
-    <a href="{{ path('admin_types_index') }}">
-        <button class="btn btn-info">Retour à la liste</button>
-    </a>    
-</div>
 {% endblock %}

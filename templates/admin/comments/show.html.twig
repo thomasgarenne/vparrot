@@ -1,10 +1,11 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Details Comment{% endblock %}
+{% block title %}Détails Commentaires{% endblock %}
 
 {% block body %}
     <div class="col-9 m-auto min-vh-100 mt-3">
         <h2>Détails Commentaire {{ comment.id }}</h2>
+        <div class="table-responsive">
         <table class="table">
             <thead>
                 <th>#</th>
@@ -33,6 +34,7 @@
                 </td>
             </tr>
         </table>
+        </div>
         <a href="{{ path('admin_comments_index') }}">
             <button class="btn btn-info">Retour à la liste</button>
         </a>

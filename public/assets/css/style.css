@@ -2,11 +2,13 @@ h1, h2 {
     color: #1A535C;
     text-align: center;
     padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
 h3 {
     color: #1A535C;
     padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
 h5 {

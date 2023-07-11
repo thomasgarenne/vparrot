@@ -3,8 +3,9 @@
 {% block title %}Types{% endblock %}
 
 {% block body %}
-    <div class="col-9 m-auto">
-        <h2>Détails</h2>
+    <div class="w-75 m-auto min-vh-100">
+        <h2>Détails</h2>.
+
         <table class="table">
             <thead>
                 <th>#</th>
@@ -23,9 +24,8 @@
             </tr>
         </table>
 
-    <a href="{{ path('admin_types_index') }}">
-        <button class="btn btn-info">Retour à la liste</button>
-    </a>
-
+        <a href="{{ path('admin_types_index') }}">
+            <button class="btn btn-info mt-2">Retour à la liste</button>
+        </a>
     </div>
 {% endblock %}

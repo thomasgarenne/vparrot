@@ -1,56 +1,54 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Brands{% endblock %}
+{% block title %}Détails constructeur{% endblock %}
 
 {% block body %}
-    <div class="col-9 m-auto">
-        <h2>Constructeur {{ brand.name }}</h2>
+<div class="w-75 m-auto min-vh-100">
+    <h2>Constructeur {{ brand.name }}</h2>
         
-        <table class="table">
-            <thead>
-                <th>#</th>
-                <th>Marque</th>
-                <th>Actions</th>
-            </thead>
-            <tr>
-                <td>{{ brand.id }}</td>
-                <td>{{ brand.name }}</td>
-                <td class="d-flex">
-                    <a href="{{ path('admin_brands_edit', {'id': brand.id}) }}">
-                        <button class="btn btn-warning">Modifier</button>
-                    </a>
-                    {{ include('admin/brands/_delete.html.twig') }}
-                </td>
-            </tr>
+    <table class="table">
+        <thead>
+            <th>#</th>
+            <th>Marque</th>
+            <th>Actions</th>
+        </thead>
+        <tr>
+            <td>{{ brand.id }}</td>
+            <td>{{ brand.name }}</td>
+            <td class="d-flex">
+                <a href="{{ path('admin_brands_edit', {'id': brand.id}) }}">
+                    <button class="btn btn-warning">Modifier</button>
+                </a>
+                {{ include('admin/brands/_delete.html.twig') }}
+            </td>
+        </tr>
+    </table>
+
+    <h2>Modèles</h2>
+
+    <table class="table">
+        <thead>
+            <th>#</th>
+            <th>Modeles</th>
+            <th>Actions</th>
+        </thead>
+
+ 
+        {% for model in brand.getModels %}
+        <tr>
+            <td>{{ model.id }}</td>
+            <td>{{ model.name }}</td>
+            <td>
+                <a href="{{ path('admin_models_edit', {'id': model.id}) }}">
+                    <button class="btn btn-warning">Modifier</button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
         </table>
-
-        <h2>Modèles</h2>
-
-        <table class="table">
-            <thead>
-                <th>#</th>
-                <th>Modeles</th>
-                <th>Actions</th>
-            </thead>
-
-            {% for model in brand.getModels %}
-            <tr>
-                <td>{{ model.id }}</td>
-                <td>{{ model.name }}</td>
-                <td>
-                    <a href="{{ path('admin_models_edit', {'id': model.id}) }}">
-                        <button class="btn btn-warning">Modifier</button>
-                    </a>
-                </td>
-            </tr>
-            {% endfor %}
-
-        </table>
-
-
 
         <a href="{{ path('admin_brands_index') }}">
-            <button class="btn btn-info">Retour à la liste</button>
+            <button class="btn btn-info mt-2">Retour à la liste</button>
         </a>
     </div>
 {% endblock %}

@@ -3,11 +3,9 @@
 {% block title %}Models index{% endblock %}
 
 {% block body %}
-    <div class="col-9 m-auto my-3">
+    <div class="w-75 m-auto min-vh-100">
         <h2>Liste des modèles</h2>
-        <a href="{{ path('admin_models_new') }}">
-            <button class="btn btn-primary">Ajouter</button>
-        </a>
+        <div class="table-responsive">
         <table class="table">
             <thead>
                 <th>#</th>
@@ -24,10 +22,11 @@
                     {# {% include "admin/models/_delete.html.twig" %} #}
                 </td>
             </tr>
-        </table>   
+        </table> 
+        </div>  
 
         <a href="{{ path('admin_models_index') }}">
-            <button class="btn btn-info">Retour à la liste</button>
+            <button class="btn btn-info mt-2">Retour à la liste</button>
         </a>
     </div>
 

@@ -1,8 +1,8 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Edit Comment{% endblock %}
+{% block title %}Modifier commentaire{% endblock %}
 {% block body %}
-<div class="col-9 m-auto">
+<div class="col-9 m-auto min-vh-100">
     <h2>Modifier commentaire {{comment.id}}</h2>
     <div class="w-75 m-auto">
         {% include "admin/comments/_form.html.twig" %}

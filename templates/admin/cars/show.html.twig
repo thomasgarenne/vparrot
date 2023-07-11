@@ -1,63 +1,64 @@
 {% extends "base.html.twig" %}
     
-{% block title %}Car Details{% endblock %}
+{% block title %}Détails Voiture{% endblock %}
 
 {% block body %}
-<div class="col-9 m-auto">
+<div class="w-75 m-auto min-vh-100">
     <h2>Détails voitures {{ car.getModel.getBrand.name }} {{ car.getModel.name }}</h2>
-    <a href="{{ path('admin_cars_new') }}"><button class="btn btn-primary">Ajouter</button></a>
-        
-        <table class="table">
-            <thead>
-                <th>#</th>
-                <th>Type</th>
-                <th>Marque</th>
-                <th>Modèle</th>
-                <th>Années</th>
-                <th>Km</th>
-                <th>Moteur</th>
-                <th>Puissance</th>
-                <th>Portes</th>
-                <th>Sièges</th>
-                <th>Couleur</th>
-                <th>Description</th>
-                <th>Ajouté le</th>
-                <th>Référence</th>
-            </thead>
-            <tr>
-                <th scope="row">{{ car.id }}</th>
-                <td>{{ car.type.name }}</td>
-                <td>{{ car.getModel.getBrand.name}}</td>
-                <td>{{ car.getModel.name }}</td>
-                <td>{{ car.year.format('Y') }}</td>        
-                <td>{{ car.km }}</td>
-                <td>{{ car.motor }}</td>
-                <td>{{ car.power }}</td>
-                <td>{{ car.doors }}</td>
-                <td>{{ car.seats }}</td>
-                <td>{{ car.color }}</td>   
-                <td>{{ car.description }}</td>   
-                <td>{{ car.createdAt.format('Y/m/d') }}</td>
-                <td>{{ car.ref }}</td>           
-                <td class="d-flex">
-                    <a href="{{ path('admin_cars_edit', {'id': car.id}) }}">
-                        <button class="btn btn-warning m-1">Modifier</button>
-                    </a>
-                    {% include "admin/cars/_delete.html.twig" %}
-                </td>
-            </tr>
-        </table>
 
-        <h2>Images</h2>
-
-        <div class="d-flex">
-        {% for picture in car.pictures %}
-            <img src={{ asset("assets/uploads/" ~ picture.title) }} >
-        {% endfor %}
-        </div>
-
-        <a href="{{ path('admin_cars_index') }}">
-            <button class="btn btn-info my-3">Retour à la liste</button>
-        </a>
+    <div class="table-responsive">
+    <table class="table">
+        <thead>
+            <th>#</th>
+            <th>Type</th>
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Années</th>
+            <th>Km</th>
+            <th>Moteur</th>
+            <th>Puissance</th>
+            <th>Portes</th>
+            <th>Sièges</th>
+            <th>Couleur</th>
+            <th>Description</th>
+            <th>Ajouté le</th>
+            <th>Référence</th>
+        </thead>
+        <tr>
+            <th scope="row">{{ car.id }}</th>
+            <td>{{ car.type.name }}</td>
+            <td>{{ car.getModel.getBrand.name}}</td>
+            <td>{{ car.getModel.name }}</td>
+            <td>{{ car.year.format('Y') }}</td>        
+            <td>{{ car.km }}</td>
+            <td>{{ car.motor }}</td>
+            <td>{{ car.power }}</td>
+            <td>{{ car.doors }}</td>
+            <td>{{ car.seats }}</td>
+            <td>{{ car.color }}</td>   
+            <td>{{ car.description }}</td>   
+            <td>{{ car.createdAt.format('Y/m/d') }}</td>
+            <td>{{ car.ref }}</td>           
+            <td class="d-flex">
+                <a href="{{ path('admin_cars_edit', {'id': car.id}) }}">
+                    <button class="btn btn-warning m-1">Modifier</button>
+                </a>
+                {% include "admin/cars/_delete.html.twig" %}
+            </td>
+        </tr>
+    </table>
     </div>
+
+    <h2>Images</h2>
+
+    <div class="d-flex">
+    {% for picture in car.pictures %}
+        <img src={{ asset("assets/uploads/" ~ picture.title) }} >
+    {% endfor %}
+    </div>
+
+    <a href="{{ path('admin_cars_index') }}">
+        <button class="btn btn-info mt-2">Retour à la liste</button>
+    </a>
+</div>
 {% endblock %}

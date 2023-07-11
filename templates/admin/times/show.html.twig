@@ -1,37 +1,39 @@
 {% extends "base.html.twig" %}
 
-{% block title %}times{% endblock %}
+{% block title %}Détails horaires{% endblock %}
 
 {% block body %}
 
-<div class="col-9 m-auto">
-    <h2>Horaire du {{ time.day }}</h2>
-    <table class="table">
-        <thead>
-            <th>#</th>
-            <th>Jours</th>
-            <th>Ouverture matin</th>
-            <th>Fermeture matin</th>
-            <th>Ouverture après-midi</th>
-            <th>Fermeture après-midi</th>
-        </thead>
-        <tr>
-            <th scope="row">{{ time.id }}</thead>
-                        <td>{{time.day}}</td>
-                        <td>{{time.openAm.format('H:i')}}</td>            
-                        <td>{{time.closeAm.format('H:i')}}</td>            
-                        <td>{{time.openPm.format('H:i')}}</td>            
-                        <td>{{time.closePm.format('H:i')}}</td>        
-            <td class="d-flex">
-                <a href="{{ path('admin_times_edit', {'id': time.id}) }}">
-                    <button class="btn btn-warning">Modifier</button>
-                </a>
-            </td>
-        </tr>
-    </table>
-    <a href="{{ path('admin_times_index', {'id': time.id}) }}">
-        <button class="btn btn-info">Retour à la liste</button>
-    </a>
-</div>
+    <div class="w-75 m-auto min-vh-100">
+        <h2>Horaire du {{ time.day }}</h2>
+        <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Jours</th>
+                <th>Ouverture matin</th>
+                <th>Fermeture matin</th>
+                <th>Ouverture après-midi</th>
+                <th>Fermeture après-midi</th>
+            </thead>
+            <tr>
+                <th scope="row">{{ time.id }}</thead>
+                            <td>{{time.day}}</td>
+                            <td>{{time.openAm.format('H:i')}}</td>            
+                            <td>{{time.closeAm.format('H:i')}}</td>            
+                            <td>{{time.openPm.format('H:i')}}</td>            
+                            <td>{{time.closePm.format('H:i')}}</td>        
+                <td class="d-flex">
+                    <a href="{{ path('admin_times_edit', {'id': time.id}) }}">
+                        <button class="btn btn-warning">Modifier</button>
+                    </a>
+                </td>
+            </tr>
+        </table>
+        </div>
+        <a href="{{ path('admin_times_index', {'id': time.id}) }}">
+            <button class="btn btn-info mt-2">Retour à la liste</button>
+        </a>
+    </div>
 
 {% endblock %}

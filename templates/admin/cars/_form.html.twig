@@ -30,7 +30,7 @@
         {% for picture in car.pictures %}
             <div class="d-flex flex-column">
                 <img src="{{ asset('assets/uploads/' ~ picture.title) }}" alt="Image" width="150">
-                <a href="{{ path('admin_cars_delete_picture', {'id': picture.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ picture.id) }}">Supprimer</a>
+                <a href="{{ path('admin_cars_delete_picture', {'id': picture.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ picture.id) }}"><button class="btn btn-danger">Supprimer</button></a>
             </div>
         {% endfor %}
         </div>

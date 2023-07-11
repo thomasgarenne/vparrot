@@ -1,17 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Types{% endblock %}
+{% block title %}Nouveau type{% endblock %}
 
 {% block body %}
-<div class="col-9 m-auto">
-    <h2>Ajouter un Types</h2>
-    <div class="w-75 m-auto">
-    {{ include('admin/types/_form.html.twig') }}
+    <div class="w-75 m-auto min-vh-100">
+        <h2>Ajouter un Types</h2>
+        {{ include('admin/types/_form.html.twig') }}
+        <a href="{{ path('admin_types_index') }}">
+            <button class="btn btn-info mt-2">Retour à la liste</button>
+        </a>
     </div>
-    <a href="{{ path('admin_types_index') }}">
-        <button class="btn btn-info">Retour à la liste</button>
-    </a>
-
-</div>
 
 {% endblock %}

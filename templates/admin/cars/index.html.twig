@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Voiture{% endblock %}
+{% block title %}Index voiture{% endblock %}
 
 {% block body %}
     <div>
@@ -8,19 +8,19 @@
     </div>
 
     <section class="row">
-    {% include "_partials/_adminNavbar.html.twig" %}
-    <div class="col-9">
+        {% include "_partials/_adminNavbar.html.twig" %}
+        <div class="col-9">
 
-        <h2>Liste des voitures</h2>
-        <a href="{{ path('admin_cars_new') }}"><button class="btn btn-primary">Ajouter</button></a>  
+            <h2>Liste des voitures</h2>
+            <a href="{{ path('admin_cars_new') }}"><button class="btn btn-primary">Ajouter</button></a>  
 
-        <div id="js-filter-sorting">
-            {% include "admin/cars/_sorting.html.twig" %}
-        </div>
+            <div id="js-filter-sorting">
+                {% include "admin/cars/_sorting.html.twig" %}
+            </div>
 
-        <div id="js-filter-content">
-            {% include "admin/cars/_content.html.twig" %}
-        </div>
+            <div id="js-filter-content">
+                {% include "admin/cars/_content.html.twig" %}
+            </div>
 
         </div>
     </section>

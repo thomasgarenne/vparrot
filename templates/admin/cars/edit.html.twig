@@ -1,15 +1,13 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Car Edit{% endblock %}
+{% block title %}Ajout voiture{% endblock %}
 
 {% block body %}
-    <div class="col-9 m-auto">
+    <div class="w-75 m-auto min-vh-100">
         <h2>Modifier {{ car.getModel.getBrand.name }} {{ car.model.name }}</h2>
-        <div class="w-75 m-auto">
-            {{ include('admin/cars/_form.html.twig', {'btn': 'btn-warning', 'button_label': 'Modifier'}) }}
-        </div>
+        {{ include('admin/cars/_form.html.twig', {'btn': 'btn-warning', 'button_label': 'Modifier'}) }}
         <a href="{{ path('admin_cars_index') }}">
-            <button class="btn btn-info m-1">Retour à la liste</button>
+            <button class="btn btn-info mt-2">Retour à la liste</button>
         </a>
     </div>
 {% endblock %}

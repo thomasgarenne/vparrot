@@ -1,35 +1,36 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Show Services{% endblock %}
+{% block title %}Détails Services{% endblock %}
 
 {% block body %}
-<div class="col-9 m-auto">
-    <h2>Liste des Services</h2>
-    
-    <table class="table">
-        <thead>
-            <th>#</th>
-            <th>Prénoms</th>
-            <th>Descriptions</th>
-            <th>Images</th>
-        </thead>
-        <tr>
-            <th scope="row">{{ service.id }}</thead>
-            <td>{{service.name}}</td>
-            <td>{{service.description}}</td>
-            <td>
-                <img class="w-50 h-50" src={{ asset(service.picture) }} alt="{{ service.name }}">
-            </td>                 
-            <td class="d-flex">
-                <a href="{{ path('admin_services_edit', {'id': service.id}) }}">
-                    <button class="btn btn-warning mx-2">Modifier</button>
-                </a>
-                {% include "admin/services/_delete.html.twig" %}
-            </td>
-        </tr>
-    </table>
-    <a href="{{ path('admin_services_index') }}">
-        <button class="btn btn-info">Retour à la liste</button>
-    </a>
+    <div class="w-75 m-auto min-vh-100">
+        <h2>Détails service</h2>
+        <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Prénoms</th>
+                <th>Descriptions</th>
+                <th>Images</th>
+            </thead>
+            <tr>
+                <th scope="row">{{ service.id }}</thead>
+                <td>{{service.name}}</td>
+                <td>{{service.description}}</td>
+                <td>
+                    <img class="w-50 h-50" src={{ asset(service.picture) }} alt="{{ service.name }}">
+                </td>                 
+                <td class="d-flex">
+                    <a href="{{ path('admin_services_edit', {'id': service.id}) }}">
+                        <button class="btn btn-warning mx-2">Modifier</button>
+                    </a>
+                    {% include "admin/services/_delete.html.twig" %}
+                </td>
+            </tr>
+        </table>
+        </div> 
+        <a href="{{ path('admin_services_index') }}">
+            <button class="btn btn-info mt-2">Retour à la liste</button>
+        </a>
 </div>
 {% endblock %}

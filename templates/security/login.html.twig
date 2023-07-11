@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="m-auto w-75 my-4">
+<div class="m-auto w-75 my-4 min-vh-100">
     <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

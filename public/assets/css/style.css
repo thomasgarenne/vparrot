@@ -19,6 +19,7 @@ p, th{
 
 a {
     color: #1A535C;
+    text-decoration: none;
 }
 
 a:hover {
@@ -219,11 +220,13 @@ footer a {
 
 .avis a {
     color: #4ECDC4;
+    text-decoration: none;
 }
 
 .car .group {
     position: relative;
     margin: auto;
+    margin-bottom: 20px;
 }
 
 .car .group .text {

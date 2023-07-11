@@ -28,12 +28,18 @@ class CarsFixtures extends Fixture implements DependentFixtureInterface
             $car->setMotor($faker->randomElement($motor));
             $car->setPower($faker->randomElement($power));
             $car->setPrice($faker->numberBetween(3000, 50000));
+            $car->setSeats(5);
+            $car->setDoors(5);
+            $car->setDescription($faker->text(100));
 
             $type = $this->getReference('type-' . $i);
             $car->setType($type);
 
             $model = $this->getReference('mod-' . $i);
             $car->setModel($model);
+
+            $model = $car->getModel()->getName();
+            $car->setRef($model . uniqid());
 
             $manager->persist($car);
 

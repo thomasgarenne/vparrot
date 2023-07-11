@@ -25,7 +25,7 @@
                         <td>{{comment.firstname}}</td>
                         <td>{{comment.lastname}}</td>
                         <td>{{comment.content}}</td>
-                        <td>{{comment.createdAt}}</td>
+                        <td>{{comment.createdAt.format('d/m/Y')}}</td>
                         <td>
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch" id="switch{{ comment.id }}" {{ comment.isValid ? "checked" : "" }} disabled>

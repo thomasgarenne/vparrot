@@ -17,7 +17,7 @@ class PicturesFixtures extends Fixture implements DependentFixtureInterface
 
             $picture = new Pictures();
             $picture->setCar($car);
-            $picture->setTitle('/assets/uploads/car' . $i . '.jpg');
+            $picture->setTitle('car' . $i . '.jpg');
 
             $manager->persist($picture);
         }

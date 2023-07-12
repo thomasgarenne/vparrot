@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-6">
             <div class="w-75 m-auto">
-                {{ form_start(form) }}
+                {{ form_start(form, {'attr': {'class': 'cform'}}) }}
                     {{ form_widget(form) }}
                     <button class="btn-form">Envoyer</button>
                 {{ form_end(form) }}

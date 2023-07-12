@@ -29,9 +29,9 @@
             </div>
         </div>
         <div class="col-sm-12 col-lg-6">
-        <h3>Formulaire de contact</h3>
             <div class="w-75 m-auto">
-                {{ form_start(form) }}
+                <h3>Formulaire de contact</h3>
+                {{ form_start(form, {'attr': {'class': 'cform'}}) }}
                     {{form_widget(form)}}
                     <button class="btn-form">Envoyer</button>               
                 {{ form_end(form) }}

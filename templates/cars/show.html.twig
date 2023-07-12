@@ -134,7 +134,7 @@
 <section id="contact" class="col-9 m-auto py-5">
     <h2>Demande de contact</h2>
     <div class="w-75 m-auto">
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {'class': 'cform'}}) }}
         {{ form_row(form.ref, {attr: {value: car.ref}}) }}
         {{ form_row(form.model, {attr: {value: car.model.name}}) }}
         {{ form_row(form.email) }}

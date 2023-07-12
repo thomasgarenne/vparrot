@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Comments;
 use App\Form\CommentsType;
 use App\Repository\CommentsRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +15,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommentsController extends AbstractController
 {
     #[Route('/', name: 'index', methods: 'GET')]
-    public function index(CommentsRepository $commentsRepository): Response
+    public function index(Request $request, PaginatorInterface $paginator, CommentsRepository $commentsRepository): Response
     {
+        $comments = $commentsRepository->findBy([], ['created_at' => 'DESC']);
+
+        $comments = $paginator->paginate(
+            $comments,
+            $request->query->getInt('page', 1),
+            5
+        );
+
         return $this->render('comments/index.html.twig', [
-            'comments' => $commentsRepository->findBy([], ['created_at' => 'DESC']),
+            'comments' => $comments,
         ]);
     }
 

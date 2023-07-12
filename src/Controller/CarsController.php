@@ -55,7 +55,7 @@ class CarsController extends AbstractController
 
             $email = (new TemplatedEmail())
                 ->from($data['email'])
-                ->to('to@example.com')
+                ->to('drivescares@gmail.com')
                 ->subject($subject)
                 ->htmlTemplate('emails/contact_annonce.html.twig')
                 ->context([

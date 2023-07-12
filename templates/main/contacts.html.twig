@@ -13,14 +13,18 @@
                         <span>00-00-00-00-00</span>
                     </li>
                     <li>
-                        <a href="mailto:#">contact@drivescares.com</a>
+                        <a href="mailto:drivescares@gmail.com">drivescares@gmail.com</a>
                     </li>
-                    <li>
-                        Place du capitol
-                    </li>
-                    <li>
-                        31000 Toulouse
-                    </li>
+                    {% set workshop = workshops.getWorkshops %}
+                    {% for w in workshop %}
+                       <li>
+                            {{ w.address }}
+                        </li>
+                        <li>
+                            {{ w.zipcode }} {{ w.city }}
+                        </li> 
+                    {% endfor %}
+                    
                 </ul>
             </div>
         </div>

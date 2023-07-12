@@ -7,14 +7,14 @@
     <h2>Liste des commentaires</h2>
         {% for comment in comments %}
         {% if comment.valid %}
-            <div class="card col-12 m-3">
+            <div class="card w-50 m-3">
             <div class="card-body">
-                <h5 class="card-title">{{ comment.lastname}} - {{ comment.firstname }}</h5>
+                <h5>{{ comment.lastname}} - {{ comment.firstname }}</h5>
                 <div class="card-text d-flex flex-column m-auto">
                     <span class="note">Note {{ comment.note }} / 5</span>
                     <p>{{ comment.content }}</p>
                 </div>
-                <span>{{ comment.createdAt.format('d/m/Y') }}</span>
+                <p>Publié le {{ comment.createdAt.format('d/m/Y') }}</p>
             </div>
             </div>
         {% endif %}     

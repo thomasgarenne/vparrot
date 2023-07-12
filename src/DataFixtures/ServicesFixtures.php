@@ -13,15 +13,19 @@ class ServicesFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
-        $names = ['Carrosserie', 'Réparation', 'Pneus', 'Révision'];
+        $names = ['Révision et vidange', 'Pneus', 'Freinage', 'Distribution', 'Amortisseurs', 'Batterie, Eclairage', 'Bougies', 'Atelier deux roues'];
 
         foreach ($names as $name) {
+            $i = 1;
+
             $service = new Services();
             $service->setName($name);
             $service->setDescription($faker->text(20));
-            $service->setPicture('/assets/uploads/service2.jpg');
+            $service->setPicture('service' . $i . '.jpg');
 
             $manager->persist($service);
+
+            $i++;
         }
 
         $manager->flush();

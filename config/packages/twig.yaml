@@ -3,6 +3,7 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
     globals:
         opening: '@App\Twig\TimesExtension'
+        workshops: '@App\Twig\WorkshopsExtension'
 
 when@test:
     twig:

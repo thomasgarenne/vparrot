@@ -19,11 +19,14 @@
 
     <div class="contact">
         <h4>Contact Us</h4>
-        <span>10 rue du boulot</span>
-        <span>33000 Bordeaux</span>
+        {% set workshop = workshops.getWorkshops %}
+        {% for w in workshop %}
+        <span>{{ w.address }}</span>
+        <span>{{ w.zipcode }} {{ w.city }}</span>
         <a href="{{ path('app_contact') }}">Nous rejoindre !</a>
         <span>00 11 22 33 44 55</span>
-        <span>adresse@mail.fr</span>
+        <span><a href="mailto:drivescares@gmail.com">drivescares@gmail.com</a></span>
+        {% endfor %}        
     </div>
 
     <ul>

@@ -16,8 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_main')]
-    public function index(CarsRepository $carsRepository, ServicesRepository $servicesRepository, CommentsRepository $commentsRepository): Response
-    {
+    public function index(
+        CarsRepository $carsRepository,
+        ServicesRepository $servicesRepository,
+        CommentsRepository $commentsRepository,
+    ): Response {
         $comments = $commentsRepository->findBy(['is_valid' => true]);
         $notes = [];
 

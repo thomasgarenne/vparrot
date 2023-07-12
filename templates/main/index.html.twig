@@ -102,11 +102,11 @@
         <div class="center">
             <h2>Vos avis nous intéresse ! <a href="{{ path('comments_new') }}">Par ici !</a></h2>
                 <div class="ratings">
-                    <i class="fa fa-star" data-star="1"></i>
-                    <i class="fa fa-star" data-star="2"></i>
-                    <i class="fa fa-star" data-star="3"></i>
-                    <i class="fa fa-star" data-star="4"></i>
-                    <i class="fa fa-star" data-star="5"></i>
+                    <i class="fa fa-star avg" data-star="1"></i>
+                    <i class="fa fa-star avg" data-star="2"></i>
+                    <i class="fa fa-star avg" data-star="3"></i>
+                    <i class="fa fa-star avg" data-star="4"></i>
+                    <i class="fa fa-star avg" data-star="5"></i>
                     <p> sur {{ count }} avis</p>
                 </div>
             <input type="hidden" value={{ average }} id="average"/>
@@ -118,17 +118,23 @@
         {% if comment.valid %}
             <div class=" card card-body m-3 w-50">
                 <h5>{{ comment.firstname }} - {{ comment.lastname}}</h5>
-                <span class="note">Note {{ comment.note }} / 5</span>
+                <div class="ratings">
+                    <i class="fa fa-star notes" data-star="1" data-id={{comment.id}}></i>
+                    <i class="fa fa-star notes" data-star="2" data-id={{comment.id}}></i>
+                    <i class="fa fa-star notes" data-star="3" data-id={{comment.id}}></i>
+                    <i class="fa fa-star notes" data-star="4" data-id={{comment.id}}></i>
+                    <i class="fa fa-star notes" data-star="5" data-id={{comment.id}}></i>
+                </div>
+                <input type="hidden" value={{ comment.note }} data-id={{comment.id}} id="notes"/>
                 <p>{{ comment.content }}</p>
                 <p>Publié le {{ comment.createdAt.format('d/m/Y') }}</p>
-            </div>
+            </div>                
         {% endif %}
         {% endfor %}
         </div>
     </section>
-
-    {% block javascript %}
-        <script src="{{ asset('assets/js/note.js') }}"></script>
-    {% endblock %}
-
+     {% block javascript %}
+        <script src="{{ asset('assets/js/notes.js') }}"></script>
+        <script src="{{ asset('assets/js/averages.js') }}"></script>
+    {% endblock %}   
 {% endblock %}

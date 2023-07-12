@@ -11,7 +11,14 @@
             <div class="card-body">
                 <h5>{{ comment.lastname}} - {{ comment.firstname }}</h5>
                 <div class="card-text d-flex flex-column m-auto">
-                    <span class="note">Note {{ comment.note }} / 5</span>
+                    <div class="ratings">
+                        <i class="fa fa-star notes" data-star="1" data-id={{comment.id}}></i>
+                        <i class="fa fa-star notes" data-star="2" data-id={{comment.id}}></i>
+                        <i class="fa fa-star notes" data-star="3" data-id={{comment.id}}></i>
+                        <i class="fa fa-star notes" data-star="4" data-id={{comment.id}}></i>
+                        <i class="fa fa-star notes" data-star="5" data-id={{comment.id}}></i>
+                    </div>
+                    <input type="hidden" value={{ comment.note }} data-id={{comment.id}} id="notes"/>
                     <p>{{ comment.content }}</p>
                 </div>
                 <p>Publié le {{ comment.createdAt.format('d/m/Y') }}</p>
@@ -20,4 +27,7 @@
         {% endif %}     
         {% endfor %}
     </section>
+    {% block javascript %}
+        <script src="{{ asset('assets/js/notes.js') }}"></script>
+    {% endblock %}   
 {% endblock %}

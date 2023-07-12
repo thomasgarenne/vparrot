@@ -1,4 +1,4 @@
-const stars = document.querySelectorAll("i");
+const stars = document.querySelectorAll(".avg");
 const average = document.querySelector("#average");
 
 stars.forEach(star => {

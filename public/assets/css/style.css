@@ -46,6 +46,10 @@ img {
 
 }
 
+#togglePass {
+    cursor: pointer;
+}
+
 .cform {
     border: 1px solid #1A535C;
     border-radius: 10px;

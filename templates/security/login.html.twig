@@ -20,8 +20,12 @@
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
     <label for="inputPassword">Mot de Passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
+    <div class="input-group">
+        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+        <span class="input-group-text" id="togglePass">
+            <i class="bi-eye-slash" id="togglePassword"></i>
+        </span>
+    </div>
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
@@ -42,4 +46,8 @@
     </button>
     </form>
 </div>
+
+{% block javascript %}
+    <script src="{{ asset('assets/js/pass.js') }}"></script>
+{% endblock %}
 {% endblock %}

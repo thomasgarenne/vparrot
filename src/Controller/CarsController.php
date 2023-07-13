@@ -42,7 +42,7 @@ class CarsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'show', methods: ['POST', 'GET'])]
+    #[Route('/{ref}', name: 'show', methods: ['POST', 'GET'])]
     public function show(Cars $car, Request $request, MailerInterface $mailer): Response
     {
         $form = $this->createForm(ContactType::class);

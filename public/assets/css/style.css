@@ -46,6 +46,10 @@ img {
 
 }
 
+a i {
+    color: #FFFFFF;
+}
+
 #togglePass {
     cursor: pointer;
 }

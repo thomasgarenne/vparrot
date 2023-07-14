@@ -22,16 +22,19 @@ class MainController extends AbstractController
         CommentsRepository $commentsRepository,
     ): Response {
         $comments = $commentsRepository->findBy(['is_valid' => true]);
-        $notes = [];
 
-        foreach ($comments as $comment) {
-            $notes[] = $comment->getNote();
+        if ($comments !== null) {
+            $notes = [];
+
+            foreach ($comments as $comment) {
+                $notes[] = $comment->getNote();
+            }
+
+            $count = count($notes);
+            $total = array_sum($notes);
+
+            $average = ceil($total / $count);
         }
-
-        $count = count($notes);
-        $total = array_sum($notes);
-
-        $average = ceil($total / $count);
 
         return $this->render('main/index.html.twig', [
             'cars' => $carsRepository->findBy([], ['createdAt' => 'DESC'], 3),

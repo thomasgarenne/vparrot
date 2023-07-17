@@ -15,7 +15,6 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,14 +22,6 @@
                 <tr>
                     <td>{{ type.id }}</td>
                     <td>{{ type.name }}</td>
-                    <td>
-                        <a href="{{ path('admin_types_show', {'id': type.id}) }}">
-                            <button class="btn btn-info">Détails</button>
-                        </a>
-                        <a href="{{ path('admin_types_edit', {'id': type.id}) }}">
-                            <button class="btn btn-warning">Modifier</button>
-                        </a>
-                    </td>
                 </tr>
             {% else %}
                 <tr>

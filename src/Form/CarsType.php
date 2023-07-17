@@ -74,7 +74,7 @@ class CarsType extends AbstractType
                     'marron' => 'marron',
                     'bordeaux' => 'bordeaux'
                 ]
-            ])/*
+            ])
             ->add(
                 'type',
                 EntityType::class,
@@ -84,7 +84,7 @@ class CarsType extends AbstractType
                     'label' => 'Types',
                     'attr' => ['class' => 'form-control'],
                 ]
-            )*/
+            )
             ->add(
                 'model',
                 EntityType::class,

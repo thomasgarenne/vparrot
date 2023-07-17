@@ -42,7 +42,7 @@ class TypesController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    /*
     #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Types $type): Response
     {
@@ -78,4 +78,5 @@ class TypesController extends AbstractController
 
         return $this->redirectToRoute('admin_types_index', [], Response::HTTP_SEE_OTHER);
     }
+    */
 }

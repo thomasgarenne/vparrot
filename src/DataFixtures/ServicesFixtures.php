@@ -15,8 +15,9 @@ class ServicesFixtures extends Fixture
 
         $names = ['Révision et vidange', 'Pneus', 'Freinage', 'Distribution', 'Amortisseurs', 'Batterie, Eclairage', 'Bougies', 'Atelier deux roues'];
 
+        $i = 0;
         foreach ($names as $name) {
-            $i = 1;
+            $i++;
 
             $service = new Services();
             $service->setName($name);
@@ -24,8 +25,6 @@ class ServicesFixtures extends Fixture
             $service->setPicture('service' . $i . '.jpg');
 
             $manager->persist($service);
-
-            $i++;
         }
 
         $manager->flush();

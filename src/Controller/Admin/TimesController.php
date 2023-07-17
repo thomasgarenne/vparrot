@@ -22,7 +22,7 @@ class TimesController extends AbstractController
             'times' => $timesRepository->findAll(),
         ]);
     }
-    /*
+
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(TimesRepository $timesRepository, Request $request): Response
     {
@@ -42,7 +42,7 @@ class TimesController extends AbstractController
             'form' => $form,
         ]);
     }
-*/
+
     #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Times $time): Response
     {
@@ -71,7 +71,6 @@ class TimesController extends AbstractController
         ]);
     }
 
-    /*
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Times $time, TimesRepository $timesRepository, Request $request): Response
     {
@@ -81,5 +80,4 @@ class TimesController extends AbstractController
 
         return $this->redirectToRoute('admin_times_index', [], Response::HTTP_SEE_OTHER);
     }
-    */
 }

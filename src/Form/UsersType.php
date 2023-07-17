@@ -40,14 +40,6 @@ class UsersType extends AbstractType
                     'class' => 'form-control'
                 ],
                 'label' => 'Téléphone'
-            ])
-            ->add('roles', CollectionType::class, [
-                'entry_type'   => ChoiceType::class,
-                'entry_options'  => [
-                    'choices'  => [
-                        'ROLE_ADMIN_PRODUCT' => 'ROLE_ADMIN_PRODUCT',
-                    ],
-                ],
             ]);
     }
 

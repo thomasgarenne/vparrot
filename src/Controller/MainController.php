@@ -23,7 +23,10 @@ class MainController extends AbstractController
     ): Response {
         $comments = $commentsRepository->findBy(['is_valid' => true]);
 
-        if ($comments !== null) {
+        $count = 0;
+        $average = 0;
+
+        if (!empty($comments)) {
             $notes = [];
 
             foreach ($comments as $comment) {

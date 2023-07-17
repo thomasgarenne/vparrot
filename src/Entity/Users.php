@@ -41,6 +41,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    public function __construct()
+    {
+        $this->setRoles(['ROLE_PRODUCT_ADMIN']);
+    }
+
     public function getId(): ?int
     {
         return $this->id;

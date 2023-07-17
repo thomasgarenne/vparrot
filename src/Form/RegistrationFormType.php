@@ -46,14 +46,6 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Téléphone'
             ])
-            ->add('roles', CollectionType::class, [
-                'entry_type'   => ChoiceType::class,
-                'entry_options'  => [
-                    'choices'  => [
-                        'ROLE_ADMIN_PRODUCT' => 'ROLE_ADMIN_PRODUCT',
-                    ],
-                ],
-            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

@@ -72,17 +72,7 @@ class TimesType extends AbstractType
                     'propertyPath' => 'parent.all[open_am].data',
                     'message' => 'Cette valeur ne peux pas être plus petite que la réouverture'
                 ])
-            ])
-            ->add(
-                'workshops',
-                EntityType::class,
-                [
-                    'class' => Workshops::class,
-                    'choice_label' => 'name',
-                    'label' => 'Magasin',
-                    'attr' => ['class' => 'form-control'],
-                ]
-            );
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -17,9 +17,6 @@ class Times
     #[ORM\Column(length: 20)]
     private ?string $day = null;
 
-    #[ORM\ManyToOne(inversedBy: 'time')]
-    private ?Workshops $workshops = null;
-
     #[ORM\Column]
     private ?DateTime $open_am = null;
 
@@ -45,18 +42,6 @@ class Times
     public function setDay(string $day): static
     {
         $this->day = $day;
-
-        return $this;
-    }
-
-    public function getWorkshops(): ?Workshops
-    {
-        return $this->workshops;
-    }
-
-    public function setWorkshops(?Workshops $workshops): static
-    {
-        $this->workshops = $workshops;
 
         return $this;
     }

@@ -5,6 +5,15 @@
         {% include "_partials/_adminNavbar.html.twig" %}
         <div class="col-9 border border-light p-2">
             <h2>Administration</h2>
+            {% if app.user %}
+            
+                 <h4>Bonjour {{ app.user.firstname }} {{ app.user.lastname }}</h4>
+                {% if comments|length > 0 %}
+                    <p>Vous avez {{ comments|length }} commentaires en attentes de validations.</p>
+                {% else %}
+                    <p>Aucun nouveau commentaire à valider.</p>
+                {% endif %}
+            {% endif %}
         </div>
     </section>
 {% endblock %}

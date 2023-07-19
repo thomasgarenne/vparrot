@@ -30,8 +30,8 @@ Contact
 
 INSTALLATION
 
-Clonez ce dépôt sur votre machine locale : 
-- https://github.com/thomasgarenne/vparrot.git.
+Clonez ce dépôt sur votre machine localeà l'aide de la commande : 
+- git clone https://github.com/thomasgarenne/vparrot.git.
 Assurez-vous d'avoir installé PHP et Composer sur votre machine.
 Exécutez la commande composer install pour installer les dépendances du projet.
 Configurez votre base de données dans le fichier .env.local en mettant à jour les paramètres de connexion.
@@ -45,6 +45,7 @@ Accédez au site via votre navigateur à l'adresse https://127.0.0.1:8000/.
 UTILISATION
 
 Créez un compte utilisateur pour accéder à toutes les fonctionnalités du site.
+Pour cela vous pouvez vous servir des datafixtures en mode de développement ou directement en vous connectant à votre base de données en mode de production.
 Recherchez des voitures en utilisant les filtres disponibles (marque, modèle, catégorie, etc.).
 Consultez les détails d'une voiture pour obtenir des informations telles que le prix, l'année de fabrication, le kilométrage, etc.
 Publiez une annonce pour vendre votre propre voiture en fournissant tous les détails nécessaires.

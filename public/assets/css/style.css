@@ -251,6 +251,8 @@ footer a {
     position: relative;
     margin: auto;
     margin-bottom: 20px;
+    min-width: 200px;
+    min-height: 100px;
 }
 
 .car .group .text {

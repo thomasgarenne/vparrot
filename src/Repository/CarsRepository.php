@@ -46,7 +46,6 @@ class CarsRepository extends ServiceEntityRepository
 
     public function findSearch(SearchData $search): PaginationInterface
     {
-
         $query = $this
             ->createQueryBuilder('c')
             ->select('c', 'm', 'b', 't')
@@ -95,8 +94,6 @@ class CarsRepository extends ServiceEntityRepository
                 ->andWhere('t.id IN (:types)')
                 ->setParameter('types', $search->types);
         }
-
-        //return $query->getQuery()->getResult();
 
         $query = $query->getQuery();
 

@@ -70,7 +70,7 @@ class CarsController extends AbstractController
 
             $this->addFlash('success', 'Message envoyé');
 
-            return $this->redirectToRoute('cars_show', ['id' => $car->getId()]);
+            return $this->redirectToRoute('cars_show', ['ref' => $car->getRef()]);
         }
 
         return $this->render('cars/show.html.twig', [

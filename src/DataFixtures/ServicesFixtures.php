@@ -12,7 +12,6 @@ class ServicesFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-
         $names = ['Révision et vidange', 'Pneus', 'Freinage', 'Distribution', 'Amortisseurs', 'Batterie, Eclairage', 'Bougies', 'Atelier deux roues'];
 
         $i = 0;

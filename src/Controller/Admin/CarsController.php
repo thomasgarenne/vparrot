@@ -91,8 +91,12 @@ class CarsController extends AbstractController
     }
 
     #[Route('{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Cars $car, Request $request, CarsRepository $carsRepository, PictureService $pictureService): Response
-    {
+    public function edit(
+        Cars $car,
+        Request $request,
+        CarsRepository $carsRepository,
+        PictureService $pictureService
+    ): Response {
         $form = $this->createForm(CarsType::class, $car);
         $form->handleRequest($request);
 

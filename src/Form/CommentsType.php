@@ -19,21 +19,53 @@ class CommentsType extends AbstractType
                 'label' => 'Prénom',
                 'required' => true,
                 'constraints' =>
-                new Length([], 2, 30, null, null, null, null, 'Vous devez rentrer au moins {{ limit }} caractères', 'Vous devez rentrer moins de {{ limit }} caractères'),
+                new Length(
+                    [],
+                    2,
+                    30,
+                    null,
+                    null,
+                    null,
+                    null,
+                    'Vous devez rentrer au moins {{ limit }} caractères',
+                    'Vous devez rentrer moins de {{ limit }} caractères'
+                ),
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
                 'required' => true,
                 'constraints' =>
-                new Length([], 2, 30, null, null, null, null, 'Vous devez rentrer au moins {{ limit }} caractères', 'Vous devez rentrer moins de {{ limit }} caractères'),
+                new Length(
+                    [],
+                    2,
+                    30,
+                    null,
+                    null,
+                    null,
+                    null,
+                    'Vous devez rentrer au moins {{ limit }} caractères',
+                    'Vous devez rentrer moins de {{ limit }} caractères'
+                ),
             ])
             ->add('content', TextType::class, [
                 'label' => 'Message',
                 'required' => true,
                 'constraints' =>
-                new Length([], 10, 200, null, null, null, null, 'Vous devez rentrer au moins {{ limit }} caractères', 'Vous devez rentrer moins de {{ limit }} caractères'),
+                new Length(
+                    [],
+                    10,
+                    200,
+                    null,
+                    null,
+                    null,
+                    null,
+                    'Vous devez rentrer au moins {{ limit }} caractères',
+                    'Vous devez rentrer moins de {{ limit }} caractères'
+                ),
             ])
             ->add('note', ChoiceType::class, [
+                'label' => 'Note',
+                'required' => true,
                 'choices' => [
                     1 => 1,
                     2 => 2,

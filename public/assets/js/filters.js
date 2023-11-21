@@ -13,9 +13,9 @@ window.onload = () => {
 
             Form.forEach((value, key) => {
                 Params.append(key, value);
-            })         
+            })     
 
-            fetch(Url.pathname + "?" + Params.toString() + '&ajax=1', {
+            fetch(Url.pathname + "?" + Params.toString(), {
                 headers: {
                     "X-Requested-With": "XMLHttpRequest"
                 }

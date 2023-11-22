@@ -3,11 +3,51 @@
 {% block title %}Ajout modèles{% endblock %}
 
 {% block body %}
-    <div class="w-75 m-auto min-vh-100">
-    <h2>Ajouter un nouveau modèle</h2>
-       {% include "admin/models/_form.html.twig" %}
-        <a href="{{ path('admin_models_index') }}">
-            <button class="btn btn-info mt-2">Retour à la liste</button>
-        </a>
-    </div>
+<div class="w-75 m-auto min-vh-100">
+<h2>Ajouter un nouveau modèle</h2>
+    {{ form_start(form, {'attr': {'class': 'cform'}})}}
+        {{ form_widget(form) }}
+        <button class="btn {{btn|default('btn-form')}}">{{ button_label|default('Ajouter') }}</button>
+    {{ form_end(form) }}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var allData = [];
+        $.ajax({
+            url: "https://private-anon-c5f770ea7f-carsapi1.apiary-mock.com/cars",
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                allData = data;
+            },
+            error: function (error) {
+                console.log('Erreur lors de la récupération des modèles : ' + error);
+            }
+        });
+
+        $('.constructeur-select').change(function () {
+            var constructeur = $(this).find("option:selected").text().toLowerCase();
+        
+            if (constructeur) {
+                var models = allData.filter(function (value) {
+                    return value.make.toLowerCase() === constructeur;
+                });
+
+                // Remplissez la liste des modèles dans le formulaire
+                var modelSelect = $('.modele-select');
+                modelSelect.empty();
+                models.forEach(function (model) {
+                    modelSelect.append('<option value="' + model.model + '">' + model.model + '</option>');
+                });
+
+                modelSelect.show();          
+            } else {
+                modeleSelect.hide();
+            }
+        });
+    });
+</script>
+
 {% endblock %}

@@ -11,6 +11,7 @@ use App\Repository\CarsRepository;
 use App\Repository\PicturesRepository;
 use App\Service\PictureService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -149,5 +150,14 @@ class CarsController extends AbstractController
         }
 
         return new JsonResponse(['error' => 'Token invalide'], 400);
+    }
+
+    //Fonction d'appel API
+    private function getApiData(string $url)
+    {
+        $client = HttpClient::create();
+        $response = $client->request('GET', $url);
+
+        return $response->toArray();
     }
 }

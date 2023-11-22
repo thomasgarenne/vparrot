@@ -7,6 +7,7 @@ use App\Form\ModelsType;
 use App\Repository\BrandsRepository;
 use App\Repository\ModelsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,8 +31,20 @@ class ModelsController extends AbstractController
     {
         $model = new Models();
 
-        $form = $this->createForm(ModelsType::class, $model);
+        $modeleFromApi = $this->getApiData("https://private-anon-c5f770ea7f-carsapi1.apiary-mock.com/cars");
+
+        $modele = array_values(array_map(function ($m) {
+            return $m['model'];
+        }, $modeleFromApi));
+
+        $modele = array_combine($modele, $modele);
+
+        $form = $this->createForm(ModelsType::class, $model, [
+            'modele' => $modele
+        ]);
+
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $modelsRepository->save($model, true);
@@ -84,5 +97,14 @@ class ModelsController extends AbstractController
         $this->addFlash('success', 'Modèle supprimé avec succés');
 
         return $this->redirectToRoute('admin_models_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    //Fonction d'appel API
+    private function getApiData($url)
+    {
+        $client = HttpClient::create();
+        $response = $client->request('GET', $url);
+
+        return $response->toArray();
     }
 }

@@ -103,6 +103,7 @@ class CarsType extends AbstractType
                 'doors',
                 ChoiceType::class,
                 [
+                    'placeholder' => 'Choisissez le nombre de porte',
                     'label' => 'Nombre de portes',
                     'choices' => [
                         "1" => "1",
@@ -111,13 +112,15 @@ class CarsType extends AbstractType
                         "4" => "4",
                         "5" => "5",
                         "6 ou plus" => "6 ou plus",
-                    ]
+                    ],
+                    'data' => '5',
                 ]
             )
             ->add(
                 'seats',
                 ChoiceType::class,
                 [
+                    'placeholder' => 'Choisissez le nombre de siège',
                     'label' => 'Nombre de sièges',
                     'choices' => [
                         "1" => "1",
@@ -126,7 +129,8 @@ class CarsType extends AbstractType
                         "4" => "4",
                         "5" => "5",
                         "6 ou plus" => "6 ou plus",
-                    ]
+                    ],
+                    'data' => '5'
                 ]
             )
             ->add(

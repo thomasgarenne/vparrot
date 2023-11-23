@@ -5,36 +5,41 @@ namespace App\Service;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Psr\Log\LoggerInterface;
 
 class PictureService
 {
+    const UPLOAD_DIRECTORY = 'uploads/cars';
+
     public function __construct(
-        // private SluggerInterface $slugger,
         private SluggerInterface $slugger,
+        private LoggerInterface $logger,
     ) {
     }
 
     public function upload(UploadedFile $file): string
     {
-        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $safeFilename = $this->slugger->slug($originalFilename);
-        $fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+        $authorizedMimeTypes = ['image/png', 'image/jpeg'];
 
-        try {
-            $file->move(
-                'assets/uploads/',
-                $fileName
-            );
-        } catch (FileException $e) {
-            // ... handle exception if something happens during file upload
+        if (in_array($file->getClientMimeType(), $authorizedMimeTypes)) {
+            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $this->slugger->slug($originalFilename);
+            $fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+
+            try {
+                $file->move(self::UPLOAD_DIRECTORY, $fileName);
+            } catch (FileException $e) {
+                // Log l'erreur
+                $this->logger->error('Erreur lors du téléchargement du fichier: ' . $e->getMessage());
+
+                // Remonter l'exception (si nécessaire)
+                throw $e;
+            }
+
+            return $fileName;
+        } else {
+            // Le type de fichier n'est pas autorisé
+            throw new \InvalidArgumentException('Type de fichier non autorisé.');
         }
-
-        return $fileName;
     }
-    /*
-    public function getTargetDirectory(): string
-    {
-        return $this->targetDirectory;
-    }
-    */
 }

@@ -20,7 +20,7 @@ window.onload = () => {
                     "X-Requested-With": "XMLHttpRequest"
                 }
             }).then(response => {
-                return response.json();
+               return response.json();
             }).then(data => {
                 Content.innerHTML = data.content;
             }).catch(e => alert(e));

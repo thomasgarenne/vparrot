@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Cars;
 use App\Form\ContactsType;
 use App\Repository\CarsRepository;
 use App\Repository\CommentsRepository;
 use App\Repository\ServicesRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -121,5 +123,23 @@ class MainController extends AbstractController
         return $this->render('main/contacts.html.twig', [
             'form' => $form
         ]);
+    }
+
+    #[Route('/favories', name: 'app_favories')]
+    public function favories(Request $request, CarsRepository $carsRepository): Response
+    {
+        if ($request->isXmlHttpRequest()) {
+            $content = $request->getContent();
+            $carsIdString = json_decode($content);
+            $carsId = json_decode($carsIdString);
+
+            $cars = $carsRepository->findBy(['id' => $carsId]);
+
+            return new JsonResponse([
+                'favories' => $this->renderView('main/_contentFavories.html.twig', ['cars' => $cars]),
+            ]);
+        }
+
+        return $this->render('main/favories.html.twig');
     }
 }

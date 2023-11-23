@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Favories{% endblock %}
+
+{% block body %}
+<div class="contentFavories">
+	{% include "/main/_contentFavories.html.twig" %}
+</div>
+<script>
+    const contentFavories = document.querySelector(".contentFavories");
+    const carsId = localStorage.getItem('favoris') || [];
+
+    window.addEventListener('load', () => {
+
+        fetch('/favories', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            body: JSON.stringify(carsId),
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then(data => {
+            contentFavories.innerHTML = data.favories;
+        })
+        .catch(error => console.error(error));
+
+    });
+</script>
+
+{% endblock %}

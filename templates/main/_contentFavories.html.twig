@@ -1,42 +1,65 @@
-{% if cars is defined %}
-    <h2>Mes favories</h2>
+{% if cars is defined and cars|length > 0 %}
+    <h2>Mes favoris</h2>
+    <div class="container mb-5">
     {% for car in cars %}
-<div class="car card col-md-4 col-lg-3 m-3 p-0 shadow-sm">
-    <div class="position-relative">
-        <img src={{ asset('assets/uploads/' ~ car.pictures[0].title) }} class="card-img-top" alt="voitures">
-        <button 
-            id="fav{{ car.id }}"
-            class="position-absolute bottom-0 end-0 bg-transparent border-0"
-            onclick="addOrRemoveFav({{ car.id }})"
-        >
-            🩶
-        </button>
-    </div>
-        <span>Ajouté le {{ car.createdAt.format('d/m/Y') }}</span>
-        <div class="card-body">
-            <h5 class="card-title">{{ car.getModel.getBrand.name}}</h5>
-            <h6 class="card-title">{{ car.getModel.name }}</h6>
-            <div class="card-text d-flex justify-content-around">
-                <ul class="list-unstyled">
-                    <li>{{ car.year.format('Y') }}</li>
-                    <li>{{ car.km }}</li>
-                </ul>
-                <ul class="list-unstyled">
-                    <li>{{ car.motor }}</li>
-                    <li>{{ car.power }} Ch</li>
-                </ul>
+        <div id="favorite{{ car.id }}" class="car card col-sm-10 col-md-4 col-lg-3 m-3 p-0 shadow-sm">
+            <div class="position-relative">
+                <img src={{ asset('assets/uploads/' ~ car.pictures[0].title) }} class="card-img-top" alt="voitures">
+                <button 
+                    id="fav{{ car.id }}"
+                    class="position-absolute bottom-0 end-0 bg-transparent border-0"
+                    onclick="removeFavorite({{ car.id }})"
+                >
+                    🧡
+                </button>
             </div>
-            <div class="container justify-content-between">
-                <h5>{{ car.price }} €</h5>
-                 <a href="{{ path('cars_show', {'ref': car.ref}) }}">
-                    <button class="btn-infos">Plus d'infos</button>
-                </a>
+            <span>Ajouté le {{ car.createdAt.format('d/m/Y') }}</span>
+            <div class="card-body">
+                <h5 class="card-title">{{ car.getModel.getBrand.name}}</h5>
+                <h6 class="card-title">{{ car.getModel.name }}</h6>
+                <div class="card-text d-flex justify-content-around">
+                    <ul class="list-unstyled">
+                        <li>{{ car.year.format('Y') }}</li>
+                        <li>{{ car.km }}</li>
+                    </ul>
+                    <ul class="list-unstyled">
+                        <li>{{ car.motor }}</li>
+                        <li>{{ car.power }} Ch</li>
+                    </ul>
+                </div>
+                <div class="container justify-content-between">
+                    <h5>{{ car.price }} €</h5>
+                    <a href="{{ path('cars_show', {'ref': car.ref}) }}">
+                        <button class="btn-infos">Plus d'infos</button>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-    
-<script src="{{ asset('assets/js/localStorageFavories.js') }}"></script>
 {% endfor %} 
+</div>
 {% else %}
-    <h2>Aucun favorie pour le moment</h2>        
+    <h2>Aucun favoris pour le moment</h2>        
 {% endif %}
+
+<script>
+const fav = JSON.parse(localStorage.getItem('favoris'));
+
+function removeFavorite(id) {
+    let button = document.querySelector("#fav" + id);
+    let content = document.querySelector("#favorite" + id);
+
+    const favIndex = fav.indexOf(id);
+
+    if (favIndex !== -1) {
+        fav.splice(favIndex, 1);
+
+        localStorage.setItem('favoris', JSON.stringify(fav));
+        alert("Véhicule retiré des favoris");
+
+        content.remove();
+    } else {
+        alert("ID introuvable dans les favoris");
+    }
+}
+
+</script>

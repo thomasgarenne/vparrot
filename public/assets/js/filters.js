@@ -1,5 +1,4 @@
 window.onload = () => {
-
     const FiltersForm = document.querySelector("#js-filter-form");
     const Content = document.querySelector("#js-filter-content");
 
@@ -23,7 +22,9 @@ window.onload = () => {
                return response.json();
             }).then(data => {
                 Content.innerHTML = data.content;
-            }).catch(e => alert(e));
+            }).catch(e => {
+                alert(e);
+            });
         });
     })
 

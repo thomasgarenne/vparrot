@@ -1,17 +1,31 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Favories{% endblock %}
+{% block title %}Favoris{% endblock %}
 
 {% block body %}
-<div class="contentFavories">
+
+<div id="loader" class="spinner-border position-absolute top-50 start-50" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
+
+<div class="contentFavories min-vh-100">
 	{% include "/main/_contentFavories.html.twig" %}
 </div>
+
 <script>
+    function showLoader() {
+        document.getElementById('loader').style.display = 'block';
+    }
+
+    function hideLoader() {
+        document.getElementById('loader').style.display = 'none';
+    }
+
     const contentFavories = document.querySelector(".contentFavories");
     const carsId = localStorage.getItem('favoris') || [];
 
     window.addEventListener('load', () => {
-
+        showLoader();
         fetch('/favories', {
             method: 'POST',
             headers: {
@@ -25,8 +39,12 @@
         })
         .then(data => {
             contentFavories.innerHTML = data.favories;
+            hideLoader();
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+            console.error(error);
+            hideLoader();
+        });
 
     });
 </script>

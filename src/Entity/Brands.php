@@ -25,6 +25,7 @@ class Brands
         minMessage: 'Vous devez écrire plus de {{ limit }} caractères',
         maxMessage: 'Vous ne devez pas dépasser {{ limit }} caractères',
     )]
+    #[Assert\NotBlank()]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'brand', targetEntity: Models::class, orphanRemoval: true)]

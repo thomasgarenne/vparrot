@@ -6,9 +6,8 @@ use App\Entity\Times;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class TimesFixtures extends Fixture implements DependentFixtureInterface
+class TimesFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
@@ -22,19 +21,9 @@ class TimesFixtures extends Fixture implements DependentFixtureInterface
             $time->setOpenPm(new DateTime());
             $time->setClosePm(new DateTime());
 
-            $work = $this->getReference('work-1');
-            $time->setWorkshops($work);
-
             $manager->persist($time);
         }
 
         $manager->flush();
-    }
-
-    public function getDependencies(): array
-    {
-        return [
-            WorkshopFixtures::class
-        ];
     }
 }

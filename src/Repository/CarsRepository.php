@@ -19,7 +19,6 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class CarsRepository extends ServiceEntityRepository
 {
-
     public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Cars::class);

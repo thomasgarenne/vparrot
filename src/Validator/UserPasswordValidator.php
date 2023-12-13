@@ -7,7 +7,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class UserPasswordValidator extends ConstraintValidator
 {
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         /* @var App\Validator\UserPassword $constraint */
 

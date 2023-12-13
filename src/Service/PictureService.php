@@ -19,27 +19,31 @@ class PictureService
 
     public function upload(UploadedFile $file): string
     {
-        $authorizedMimeTypes = ['image/png', 'image/jpeg'];
+        //$authorizedMimeTypes = ['image/png', 'image/jpeg'];
 
-        if (in_array($file->getClientMimeType(), $authorizedMimeTypes)) {
-            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $this->slugger->slug($originalFilename);
-            $fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+        // if (in_array($file->getClientMimeType(), $authorizedMimeTypes)) {
+        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $safeFilename = $this->slugger->slug($originalFilename);
+        $fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
 
-            try {
-                $file->move(self::UPLOAD_DIRECTORY, $fileName);
-            } catch (FileException $e) {
-                // Log l'erreur
-                $this->logger->error('Erreur lors du téléchargement du fichier: ' . $e->getMessage());
+        try {
+            $file->move(self::UPLOAD_DIRECTORY, $fileName);
+        } catch (FileException $e) {
+            // Log l'erreur
+            $this->logger->error('Erreur lors du téléchargement du fichier: ' . $e->getMessage());
 
-                // Remonter l'exception (si nécessaire)
-                throw $e;
-            }
+            // Remonter l'exception (si nécessaire)
+            throw $e;
+        }
 
-            return $fileName;
-        } else {
+        return $fileName;
+        /* } else {
             // Le type de fichier n'est pas autorisé
+            // Ajoutez cette ligne pour déboguer le type MIME
+            dump($file->getClientMimeType());
+
             throw new \InvalidArgumentException('Type de fichier non autorisé.');
         }
+        */
     }
 }

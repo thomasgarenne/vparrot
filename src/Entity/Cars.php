@@ -8,6 +8,7 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CarsRepository::class)]
 class Cars
@@ -22,18 +23,23 @@ class Cars
     private ?Types $type = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank()]
     private ?DateTime $year = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank()]
     private ?int $km = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
     private ?string $motor = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank()]
     private ?int $power = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
     private ?string $color = null;
 
     #[ORM\OneToMany(mappedBy: 'car', targetEntity: Pictures::class, orphanRemoval: true, cascade: ['persist'])]
@@ -47,18 +53,22 @@ class Cars
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank()]
     private ?int $price = null;
 
     #[ORM\Column(length: 50)]
     private ?string $ref = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank()]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank()]
     private ?int $doors = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank()]
     private ?int $seats = null;
 
     public function __construct()

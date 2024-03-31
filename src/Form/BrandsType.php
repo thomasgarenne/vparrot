@@ -15,23 +15,21 @@ class BrandsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            /* Pour ajout manuel des constructeurs, délaissé pour utilisation API
             ->add('name', TextType::class, [
                 'required' => true,
                 'attr' => [
                     'class' => 'form-control'
                 ],
                 'label' => 'Nom',
-            ])
-            */
-            ->add('name', ChoiceType::class, [
-                'choices' => $options['marques'],
-                'placeholder' => 'Sélectionnez un constructeur',
-                'attr' => [
-                    'class' => 'form-control constructeur-select'
-                ],
-                'label' => 'Constructeur',
             ]);
+        // ->add('name', ChoiceType::class, [
+        //     'choices' => $options['marques'],
+        //     'placeholder' => 'Sélectionnez un constructeur',
+        //     'attr' => [
+        //         'class' => 'form-control constructeur-select'
+        //     ],
+        //     'label' => 'Constructeur',
+        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

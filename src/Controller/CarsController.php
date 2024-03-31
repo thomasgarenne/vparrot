@@ -7,6 +7,7 @@ use App\Entity\Cars;
 use App\Form\ContactType;
 use App\Form\SearchType;
 use App\Repository\CarsRepository;
+use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,6 +19,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/cars', name: 'cars_')]
 class CarsController extends AbstractController
 {
+
+    private LoggerInterface $logger;
+
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
     #[Route('/', name: 'index', methods: ['GET', 'POST'])]
     public function index(CarsRepository $carsRepository, Request $request): Response
     {
@@ -66,9 +75,13 @@ class CarsController extends AbstractController
                     'message' => $data['message'],
                 ]);
 
-            $mailer->send($email);
-
-            $this->addFlash('success', 'Message envoyé');
+            try {
+                $mailer->send($email);
+                $this->addFlash('success', 'Message envoyé');
+            } catch (\Exception $e) {
+                $this->logger->critical($e->getMessage());
+                $this->addFlash('error', 'Une erreur est survenue lors de l\'envoie du mail');
+            }
 
             return $this->redirectToRoute('cars_show', ['ref' => $car->getRef()]);
         }

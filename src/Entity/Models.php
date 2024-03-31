@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ModelsRepository::class)]
 #[UniqueEntity('name')]
@@ -18,6 +19,11 @@ class Models
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
+    #[Assert\Regex(
+        pattern: "/^[A-z0-9 \-]{1,}$/",
+        message: "Caractère non autorisé"
+    )]
     private ?string $name = null;
 
     #[ORM\ManyToOne(inversedBy: 'models')]

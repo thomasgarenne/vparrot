@@ -30,24 +30,26 @@ class ModelsController extends AbstractController
     public function new(ModelsRepository $modelsRepository, Request $request): Response
     {
         $model = new Models();
+        $form = $this->createForm(ModelsType::class);
 
-        $modeleFromApi = $this->getApiData("https://private-anon-c5f770ea7f-carsapi1.apiary-mock.com/cars");
+        // $modeleFromApi = $this->getApiData("https://private-anon-c5f770ea7f-carsapi1.apiary-mock.com/cars");
 
-        $modele = array_values(array_map(function ($m) {
-            return $m['model'];
-        }, $modeleFromApi));
+        // $modele = array_values(array_map(function ($m) {
+        //     return $m['model'];
+        // }, $modeleFromApi));
 
-        $modele = array_combine($modele, $modele);
+        // $modele = array_combine($modele, $modele);
 
-        $form = $this->createForm(ModelsType::class, $model, [
-            'modele' => $modele
-        ]);
+        // $form = $this->createForm(ModelsType::class, $model, [
+        //     'modele' => $modele
+        // ]);
 
         $form->handleRequest($request);
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $modelsRepository->save($model, true);
+            $data = $form->getData();
+            $modelsRepository->save($data, true);
 
             $this->addFlash('success', 'Modèle ajouté avec succés');
 

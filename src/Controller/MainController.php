@@ -7,6 +7,7 @@ use App\Form\ContactsType;
 use App\Repository\CarsRepository;
 use App\Repository\CommentsRepository;
 use App\Repository\ServicesRepository;
+use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,6 +18,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
 {
+    private LoggerInterface $logger;
+
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
     #[Route('/', name: 'app_main')]
     public function index(
         CarsRepository $carsRepository,
@@ -79,9 +87,14 @@ class MainController extends AbstractController
                     'message' => $data['message'],
                 ]);
 
-            $mailer->send($email);
+            try {
+                $mailer->send($email);
+                $this->addFlash('success', 'Message envoyé');
+            } catch (\Exception $e) {
+                $this->logger->critical($e->getMessage());
+                $this->addFlash('error', 'Une erreur est survenue lors de l\'envoi du mail');
+            }
 
-            $this->addFlash('success', 'Message envoyé');
 
             return $this->redirectToRoute('app_carrosserie');
         }

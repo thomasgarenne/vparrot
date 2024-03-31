@@ -1,5 +1,8 @@
 Site Vitrine Garage Automobile, Vente véhicule d'occasion
 
+VERSION 
+Symfony 6.3
+PHP 8.1
 
 DESCRIPTION
 

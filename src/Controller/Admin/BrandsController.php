@@ -28,45 +28,47 @@ class BrandsController extends AbstractController
     public function new(Request $request, BrandsRepository $brandsRepository)
     {
         $brand = new Brands();
+        $form = $this->createForm(BrandsType::class);
 
-        /**
-         * Obtient les données des fabricants depuis une API externe.
-         * @param string $apiUrl L'URL de l'API fournissant les données des fabricants.
-         * @return array Les données des fabricants obtenues depuis l'API.
-         */
-        $marquesFromApi = $this->getApiData("https://private-anon-c5f770ea7f-carsapi1.apiary-mock.com/manufacturers");
+        // /**
+        //  * Obtient les données des fabricants depuis une API externe.
+        //  * @param string $apiUrl L'URL de l'API fournissant les données des fabricants.
+        //  * @return array Les données des fabricants obtenues depuis l'API.
+        //  */
+        // $marquesFromApi = $this->getApiData("https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/all-vehicles-model/records?select=make");
 
-        /**
-         * Transforme le tableau associatif des données des fabricants en un tableau simple contenant seulement les noms des fabricants.
-         * @param array $marque Le tableau associatif représentant les données d'un fabricant.
-         * @return string Le nom du fabricant extrait du tableau associatif.
-         */
-        $marques = array_values(array_map(function ($marque) {
-            return $marque['name'];
-        }, $marquesFromApi));
+        // /**
+        //  * Transforme le tableau associatif des données des fabricants en un tableau simple contenant seulement les noms des fabricants.
+        //  * @param array $marque Le tableau associatif représentant les données d'un fabricant.
+        //  * @return string Le nom du fabricant extrait du tableau associatif.
+        //  */
+        // $marques = array_values(array_map(function ($marque) {
+        //     return $marque['name'];
+        // }, $marquesFromApi));
 
-        /**
-         * Crée un tableau associatif où les clés et les valeurs sont les noms des fabricants.
-         * @param array $marques Le tableau simple contenant les noms des fabricants.
-         * @return array Le tableau associatif des fabricants avec les clés et les valeurs étant les noms des fabricants.
-         */
-        $marques = array_combine($marques, $marques);
+        // /**
+        //  * Crée un tableau associatif où les clés et les valeurs sont les noms des fabricants.
+        //  * @param array $marques Le tableau simple contenant les noms des fabricants.
+        //  * @return array Le tableau associatif des fabricants avec les clés et les valeurs étant les noms des fabricants.
+        //  */
+        // $marques = array_combine($marques, $marques);
 
-        /**
-         * Crée un formulaire Symfony en utilisant le type BrandsType et les options spécifiées, y compris la liste des fabricants.
-         * @param BrandsType $brand L'objet représentant le formulaire pour la gestion des marques.
-         * @param array $marques Le tableau associatif des fabricants à utiliser comme options pour le champ du formulaire.
-         * @return FormInterface Le formulaire Symfony prêt à être affiché.
-         */
-        $form = $this->createForm(BrandsType::class, $brand, [
-            'marques' => $marques,
-        ]);
+        // /**
+        //  * Crée un formulaire Symfony en utilisant le type BrandsType et les options spécifiées, y compris la liste des fabricants.
+        //  * @param BrandsType $brand L'objet représentant le formulaire pour la gestion des marques.
+        //  * @param array $marques Le tableau associatif des fabricants à utiliser comme options pour le champ du formulaire.
+        //  * @return FormInterface Le formulaire Symfony prêt à être affiché.
+        //  */
+        // $form = $this->createForm(BrandsType::class, $brand, [
+        //     'marques' => $marques,
+        // ]);
 
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $brandsRepository->save($brand, true);
+            $data = $form->getData();
+            $brandsRepository->save($data, true);
 
             $this->addFlash('success', 'Constructeur ajouté');
 
